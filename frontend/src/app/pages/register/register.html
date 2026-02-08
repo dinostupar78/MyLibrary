@@ -1,1 +1,80 @@
-<p>register works!</p>
+<div class="register-page">
+
+  <div class="register-left">
+    <div class="register-content">
+
+      <h2>Create your account</h2>
+      <p>Please fill in the form to register</p>
+
+      <form>
+
+        <label>Username</label>
+        <input
+          type="text"
+          placeholder="Username"
+          />
+
+        <label>Password</label>
+        <input
+          type="password"
+          placeholder="Password"
+          />
+
+        <label>Repeat password</label>
+        <input
+          type="password"
+          placeholder="Repeat password"
+         />
+
+        <label>Name</label>
+        <input
+          type="text"
+          placeholder="Name"
+          />
+
+        <label>E-mail</label>
+        <input
+          type="email"
+          placeholder="E-mail"
+          />
+
+        <button class="register-btn">Register</button>
+
+      </form>
+
+
+      <div class="login">
+        <span>Already have an account?</span>
+        <button>Back to login</button>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="right-side">
+    <div class="overlay-content">
+
+      <a
+        class="brand-center"
+        (mouseenter)="isHovered = true"
+        (mouseleave)="isHovered = false"
+      >
+        <img
+          class="right-logo"
+          [src]="isHovered ? 'public/logoOrange.png' : 'public/logoWhite.png'"
+          alt="ForumLite logo"
+        />
+
+        <h1
+          class="brand-text"
+          [class.hovered]="isHovered"
+        >
+          ForumLite
+        </h1>
+      </a>
+
+    </div>
+  </div>
+
+</div>
+
