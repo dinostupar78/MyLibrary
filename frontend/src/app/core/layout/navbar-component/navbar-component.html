@@ -1,0 +1,53 @@
+<nav class="navbar navbar-expand-lg fixed-top" style="background:#26272b;">
+  <div class="container">
+
+    <a class="navbar-brand brand-center">
+      <img
+        class="d-inline-block align-top"
+        [src]="isHovered ? 'logoGreen.png' : 'logo.png'"
+        alt="ForumLite logo"
+      />
+      <span
+        class="brand-text"
+        [class.hovered]="isHovered">
+      ForumLite
+      </span>
+    </a>
+
+    <button
+      class="navbar-toggler"
+      type="button"
+      (click)="toggleNavbar()"
+      aria-label="Toggle navigation">
+
+      <span *ngIf="!navbarOpened" class = "hamburger-menu">☰</span>
+      <span *ngIf="navbarOpened" class = "hamburger-menu">✕</span>
+    </button>
+
+    <div
+      class="navbar-collapse justify-content-end"
+      [class.collapse]="!navbarOpened"
+      [class.show]="navbarOpened">
+      <ul class="navbar-nav text-center">
+        <li class="nav-item">
+          <a>Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link">Profile</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link">Logout</a>
+        </li>
+        <li class="nav-item ms-lg-3">
+          <a class="signin-btn">
+            <fa-icon [icon]="faRightToBracket"></fa-icon>
+            <span> Sign In</span>
+          </a>
+        </li>
+
+      </ul>
+    </div>
+
+  </div>
+</nav>
+
