@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import {FaIconComponent, FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 import {Router, RouterLink} from '@angular/router';
 import { faRightToBracket  } from '@fortawesome/free-solid-svg-icons';
+import {NgIf} from '@angular/common';
 
 
 @Component({
@@ -9,6 +10,7 @@ import { faRightToBracket  } from '@fortawesome/free-solid-svg-icons';
   imports: [
     FaIconComponent,
     FontAwesomeModule,
+    NgIf
 
 
   ],

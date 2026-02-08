@@ -1,16 +1,15 @@
-<nav class="navbar navbar-expand-lg fixed-top" style="background:#26272b;">
+<nav class="navbar navbar-expand-lg fixed-top">
   <div class="container">
 
-    <a class="navbar-brand brand-center">
+    <a class="navbar-brand brand-center"
+       (mouseenter)="isHovered = true"
+       (mouseleave)="isHovered = false">
       <img
-        class="d-inline-block align-top"
-        [src]="isHovered ? 'logoGreen.png' : 'logo.png'"
-        alt="ForumLite logo"
+        [src]="isHovered ? 'public/logoOrange.png' : 'public/logoWhite.png'"
+        alt="MyLibrary logo"
       />
-      <span
-        class="brand-text"
-        [class.hovered]="isHovered">
-      ForumLite
+      <span class="brand-text" [class.hovered]="isHovered">
+      MyLibrary
       </span>
     </a>
 
@@ -30,7 +29,7 @@
       [class.show]="navbarOpened">
       <ul class="navbar-nav text-center">
         <li class="nav-item">
-          <a>Home</a>
+          <a class="nav-link">Home</a>
         </li>
         <li class="nav-item">
           <a class="nav-link">Profile</a>

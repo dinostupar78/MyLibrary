@@ -1,0 +1,140 @@
+.navbar {
+  background: transparent;
+}
+
+.navbar-toggler {
+  border: 1px solid #fff;
+}
+
+.navbar-toggler:focus,
+.navbar-toggler:active {
+  box-shadow: none;
+}
+
+/* ================= LOGO ================= */
+.navbar-brand img {
+  display: block;
+  height: 40px;
+  width: auto;
+  transform: translateY(4px);
+  transition: transform 0.2s ease;
+}
+
+.navbar-brand:hover img {
+  transform: translateY(4px) scale(1.05);
+}
+
+.brand-center {
+  display: flex;
+  align-items: center;
+}
+
+/* ================= BRAND TEXT ================= */
+.brand-text {
+  color: white;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 1;
+  display: block;
+}
+
+.brand-text.hovered {
+  color: #FFA500;
+}
+
+/* ================= HAMBURGER ================= */
+.hamburger-menu {
+  color: white;
+}
+
+/* ================= NAV LINKS ================= */
+.nav-link {
+  font-weight: 500;
+  position: relative;
+  color: white;
+  font-size: 16px;
+}
+
+.nav-link:hover {
+  color: #FFA500;
+}
+
+.nav-link::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 3px;
+  width: 0;
+  background: #FFA500;
+  transition: width 0.25s ease;
+}
+
+.nav-link:hover::before {
+  width: 100%;
+}
+
+/* ================= SIGN IN ================= */
+.signin-btn fa-icon {
+  font-size: 16px;
+}
+
+.signin-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: white;
+  color: #0f172a;
+  font-weight: 600;
+  gap: 0.1rem;
+  font-size: 16px;
+  padding: 0.5rem 1.1rem;
+  border-radius: 30px;
+  text-decoration: none;
+}
+
+.signin-btn:hover {
+  background: #FFA500;
+  color: white;
+  transition: background 0.3s, color 0.3s;
+}
+
+.signin-btn::before {
+  display: none;
+}
+
+/* ================= MOBILE ================= */
+@media (max-width: 992px) {
+  .navbar {
+    background: #26272B;
+  }
+
+  .brand-center {
+    margin: 0 auto;
+  }
+
+  .brand-center img {
+    margin: 0 auto;
+  }
+
+  .nav-link {
+    position: relative;
+    display: inline-block;
+  }
+
+  .nav-link::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    right: 50%;
+    height: 3px;
+    background: #FFA500;
+    transition: left 0.25s ease, right 0.25s ease;
+  }
+
+  .nav-link:hover::before {
+    left: 0;
+    right: 0;
+  }
+}
