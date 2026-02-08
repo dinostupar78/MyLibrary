@@ -10,7 +10,9 @@ import {NgIf} from '@angular/common';
   imports: [
     FaIconComponent,
     FontAwesomeModule,
+    RouterLink,
     NgIf
+
 
 
   ],

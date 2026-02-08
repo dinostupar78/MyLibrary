@@ -16,11 +16,7 @@ html, body {
 
 .login-left {
   flex: 1;
-  background: linear-gradient(
-    180deg,
-    rgba(38, 39, 43, 0.85),
-    rgba(38, 39, 43, 0.95)
-  );
+  background: #F5F5F5;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -96,6 +92,8 @@ input:focus {
   border-radius: 8px;
   padding: 8px 24px;
   color: white;
+  font-weight: 500;
+
 }
 
 .register button:hover {

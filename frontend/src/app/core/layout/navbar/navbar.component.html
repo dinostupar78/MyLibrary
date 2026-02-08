@@ -29,16 +29,16 @@
       [class.show]="navbarOpened">
       <ul class="navbar-nav text-center">
         <li class="nav-item">
-          <a class="nav-link">Home</a>
+          <a class="nav-link" [routerLink]="['']">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link">About</a>
+          <a class="nav-link" [routerLink]="['/about']">About</a>
         </li>
-        <li class="nav-item">
+        <!--<li class="nav-item">
           <a class="nav-link">Logout</a>
-        </li>
+        </li>-->
         <li class="nav-item ms-lg-3">
-          <a class="signin-btn">
+          <a class="signin-btn" [routerLink]="['/login']">
             <fa-icon [icon]="faRightToBracket"></fa-icon>
             <span> Sign In</span>
           </a>
