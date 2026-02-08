@@ -1,11 +1,16 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-login',
   imports: [],
   templateUrl: './login.html',
-  styleUrl: './login.css',
+  styleUrl: './login.css'
 })
-export class Login {
+export class Login implements OnInit {
+  ngOnInit(): void {}
+
+  isHovered = false;
+
+
 
 }

@@ -1,0 +1,210 @@
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+:host {
+  display: block;
+  height: 100vh;
+}
+
+.login-page {
+  display: flex;
+  height: 100vh;
+  width: 100%;
+}
+
+.login-left {
+  flex: 1;
+  background: linear-gradient(
+    180deg,
+    rgba(38, 39, 43, 0.85),
+    rgba(38, 39, 43, 0.95)
+  );
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.login-content {
+  width: 100%;
+  max-width: 420px;
+}
+
+.login-content h2 {
+  margin-bottom: 8px;
+  color: black;
+  text-align: center;
+}
+
+.login-content p {
+  margin-bottom: 30px;
+  color: black;
+  text-align: center;
+}
+
+label {
+  font-weight: 500;
+  margin-bottom: 6px;
+  display: block;
+  color: #1c1c1c;
+}
+
+input {
+  width: 100%;
+  padding: 12px 14px;
+  margin-bottom: 18px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+}
+
+input:focus {
+  outline: none;
+  border-color: #71797E;
+}
+
+.login-btn {
+  width: 100%;
+  padding: 14px;
+  background: #71797E;
+  border: none;
+  border-radius: 12px;
+  color: white;
+  font-weight: 600;
+  font-size: 15px;
+  cursor: pointer;
+  margin-bottom: 25px;
+  transition: transform 0.1s ease, box-shadow 0.1s ease;
+}
+
+.login-btn:hover {
+  background: #FFA500;
+  transition: background 0.3s, color 0.3s;
+}
+
+.register {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.register button {
+  border: none;
+  outline: none;
+  background: #71797E;
+  border-radius: 8px;
+  padding: 8px 24px;
+  color: white;
+}
+
+.register button:hover {
+  background: #FFA500;
+  transition: background 0.3s, color 0.3s;
+
+}
+
+.right-side {
+  position: relative;
+  flex: 1;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.right-side::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("/public/loginRight.jpg");
+  background-size: cover;
+  background-position: right center;
+  filter: blur(6px);
+  transform: scale(1.05);
+  z-index: 1;
+}
+
+.right-side::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.35);
+  z-index: 2;
+}
+
+.overlay-content {
+  position: relative;
+  z-index: 3;
+  color: white;
+  text-align: center;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+}
+
+.overlay-content h2 {
+  margin: 4px 0;
+}
+
+.overlay-content p {
+  margin: 0;
+}
+
+.brand-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.brand-text {
+  color: white;
+  font-weight: 600;
+  transition: color 0.2s ease;
+}
+
+.brand-text.hovered {
+  color: #FFA500;
+}
+
+.right-logo{
+  width: 300px;
+  opacity: 0.95;
+  margin-bottom: -25px;
+  transition: transform 0.2s ease;
+
+}
+
+.brand-center .right-logo {
+  transform: scale(1);
+}
+
+.brand-center .right-logo.hovered {
+  transform: scale(1.05);
+}
+
+@media (max-width: 768px) {
+  .login-page {
+    flex-direction: column;
+  }
+
+  .login-right {
+    display: none;
+  }
+
+  .login-left {
+    padding: 24px;
+  }
+
+  .login-content {
+    max-width: 100%;
+  }
+
+  .right-side{
+    display: none;
+  }
+}

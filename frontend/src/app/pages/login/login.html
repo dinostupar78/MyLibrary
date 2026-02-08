@@ -1,1 +1,42 @@
-<p>login works!</p>
+<div class="login-page">
+
+  <div class="login-left">
+    <div class="login-content">
+
+      <h2>Welcome to MyLibrary</h2>
+      <p>Please login to your account</p>
+
+      <form>
+        <label>Username</label>
+        <input type="text" placeholder="Username" />
+
+        <label>Password</label>
+        <input type="password" placeholder="Password"/>
+
+        <button class="login-btn">Log in</button>
+      </form>
+
+      <div class="register">
+        <span>Don't have an account?</span>
+        <button>Register</button>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="right-side">
+    <div class="overlay-content">
+
+      <a
+        class="brand-center"
+        (mouseenter)="isHovered = true"
+        (mouseleave)="isHovered = false">
+        <img class="right-logo" [src]="isHovered ? 'public/logoOrange.png' : 'public/logoWhite.png'" alt="MyLibrary logo"/>
+        <h1 class="brand-text" [class.hovered]="isHovered">MyLibrary</h1>
+      </a>
+
+    </div>
+  </div>
+
+</div>
+
