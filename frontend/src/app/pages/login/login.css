@@ -159,6 +159,7 @@ input:focus {
   align-items: center;
   text-decoration: none;
   cursor: pointer;
+  gap: 6px;
 }
 
 .brand-text {
@@ -174,7 +175,6 @@ input:focus {
 .right-logo{
   width: 300px;
   opacity: 0.95;
-  margin-bottom: -25px;
   transition: transform 0.2s ease;
 
 }

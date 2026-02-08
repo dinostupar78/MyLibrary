@@ -1,0 +1,75 @@
+.about-page {
+  font-family: "Times New Roman", serif;
+  padding-top: 70px;
+  color: #333;
+}
+
+/* ABOUT */
+.about-hero {
+  padding: 60px 0;
+}
+
+.section-title {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: #222;
+}
+
+.section-text {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: #555;
+}
+
+/* IMAGE */
+.image-wrapper {
+  width: 300px;
+  height: 300px;
+  margin: auto;
+  border-radius: 50%;
+  background: #26272b;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+}
+
+.splash {
+  width: 70%;
+  height: auto;
+}
+
+/* CONTACT */
+.contact-section {
+  padding: 80px 0;
+  background: #f7f7f7;
+}
+
+.contact-mail {
+  display: inline-block;
+  margin-top: 20px;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #FFA500;
+  text-decoration: none;
+  border-bottom: 2px solid transparent;
+  transition: border-color 0.2s ease, color 0.2s ease;
+}
+
+.contact-mail:hover {
+  color: #e69500;
+  border-color: #e69500;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .image-wrapper {
+    width: 220px;
+    height: 220px;
+  }
+
+  .section-title {
+    font-size: 1.7rem;
+  }
+}
