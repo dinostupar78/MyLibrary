@@ -1,15 +1,19 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {tap} from 'rxjs';
+import {BehaviorSubject, tap} from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-
   private API_URL = 'http://localhost:3000/api/auth';
 
   constructor(private http: HttpClient) {}
+
+  private userSubject = new BehaviorSubject<any>(
+    JSON.parse(localStorage.getItem('user') || 'null'));
+
+  user$ = this.userSubject.asObservable();
 
   login(data: { username: string; password: string }) {
     return this.http.post<any>(`${this.API_URL}/login`, data).pipe(
@@ -33,9 +37,9 @@ export class AuthService {
 
   saveAuth(token: string, user: any) {
     localStorage.setItem('token', token);
-
     if (user) {
       localStorage.setItem('user', JSON.stringify(user));
+      this.userSubject.next(user);
     }
   }
 
@@ -44,13 +48,14 @@ export class AuthService {
     return u ? JSON.parse(u) : null;
   }
 
-  isLoggedIn(): string | null {
-    return this.getToken();
+  isLoggedIn(): boolean {
+    return !!this.getToken();
   }
 
   logout() {
     localStorage.removeItem('token');
     localStorage.removeItem('user');
+    this.userSubject.next(null);
   }
 
 

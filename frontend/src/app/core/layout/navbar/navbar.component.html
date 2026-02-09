@@ -34,10 +34,62 @@
         <li class="nav-item">
           <a class="nav-link" [routerLink]="['/about']">About</a>
         </li>
-        <!--<li class="nav-item">
-          <a class="nav-link">Logout</a>
-        </li>-->
-        <li class="nav-item ms-lg-3">
+        <li
+          *ngIf="user"
+          class="profile"
+          (click)="toggleProfileMenu($event)">
+
+          <img
+            *ngIf="user.user_image_url; else initialsTpl"
+            [src]="API_URL + user.user_image_url"
+            class="avatar"
+            alt="avatar"/>
+
+          <ng-template #initialsTpl>
+            <span class="initials">{{ profileInitials  }}</span>
+          </ng-template>
+
+          <div
+            class="profile-menu"
+            *ngIf="profileMenu"
+            (click)="$event.stopPropagation()">
+            <div class="info">
+              <div class="initials">
+                {{ profileInitials  }}
+              </div>
+
+              <div class="right">
+                <p>{{ user.name }}</p>
+                <p>{{ user.username }}</p>
+                <p>{{ user.email }}</p>
+              </div>
+            </div>
+
+            <div class="options">
+              <div class="option">
+                <a routerLink="/profile" class="nav-link">
+                  <i class="fa-solid fa-user"></i>
+                  <span>Profile</span>
+                </a>
+              </div>
+
+              <!--<div class="option" *ngIf="isAdmin">
+                <a routerLink="/admin" class="nav-link">
+                  <i class="fa-solid fa-user-shield"></i>
+                  <span>Admin</span>
+                </a>
+              </div>-->
+
+              <div class="option" (click)="logout()">
+                <div class="nav-link">
+                  <i class="fa-solid fa-right-from-bracket"></i>
+                  <span>Sign Out</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </li>
+        <li class="nav-item ms-lg-3" *ngIf="!user">
           <a class="signin-btn" [routerLink]="['/login']">
             <fa-icon [icon]="faRightToBracket"></fa-icon>
             <span> Sign In</span>

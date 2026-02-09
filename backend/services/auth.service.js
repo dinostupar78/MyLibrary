@@ -38,7 +38,17 @@ async function register({username, name, email, password, avatarUrl}) {
         { expiresIn: "24h" }
     );
 
-    return { token, user };
+    return {
+        token,
+        user: {
+            id: user.id,
+            username: user.username,
+            name: user.name,
+            email: user.email,
+            role: user.user_role,
+            user_image_url: user.user_image_url
+        }
+    };
 
 }
 
@@ -65,7 +75,16 @@ async function login({username, password}) {
         { expiresIn: "24h" }
     );
 
-    return {token, user: {id: user.id, email: user.email, role: user.role }
+    return {
+        token,
+        user: {
+            id: user.id,
+            username: user.username,
+            name: user.name,
+            email: user.email,
+            role: user.user_role,
+            user_image_url: user.user_image_url
+        }
     };
 }
 

@@ -6,16 +6,13 @@ function findByUsername(username) {
         [username]);
 }
 
-function createUser({ username, name, email, password_hash, salt }) {
+function createUser({username, name, email, password_hash, salt, user_image_url}) {
     return db.one(
         `
-            INSERT INTO users (username, name, email, password_hash, salt)
-            VALUES ($1, $2, $3, $4, $5)
-                RETURNING id, username, name, email, user_role, user_image_url, created_at
-        `,
-        [username, name, email, password_hash, salt]
-    );
+            INSERT INTO users (username, name, email, password_hash, salt, user_image_url)
+            VALUES ($1, $2, $3, $4, $5, $6)
+                RETURNING id, username, email, user_role, user_image_url`,
+        [username, name, email, password_hash, salt, user_image_url]);
 }
-
 
 module.exports = {findByUsername, createUser};
