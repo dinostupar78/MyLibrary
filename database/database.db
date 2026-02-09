@@ -1,0 +1,16 @@
+CREATE TABLE users (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+
+  username VARCHAR(150) UNIQUE NOT NULL,
+  name VARCHAR(100) NOT NULL,
+  email VARCHAR(200) UNIQUE NOT NULL,
+
+  password_hash TEXT NOT NULL,
+  salt TEXT NOT NULL,
+
+  user_role VARCHAR(45) NOT NULL DEFAULT 'USER',
+
+  user_image_url TEXT,
+
+  created_at TIMESTAMP DEFAULT now()
+);

@@ -18,4 +18,14 @@ async function login(req, res) {
     }
 }
 
-module.exports = {register, login};
+function me(req, res) {
+    res.json({
+        user: {
+            id: req.user.sub,
+            email: req.user.email,
+            role: req.user.role,
+        }
+    })
+}
+
+module.exports = {register, login, me};

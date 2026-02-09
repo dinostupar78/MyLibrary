@@ -1,20 +1,31 @@
-const bcrypt = require("bcrypt");
+const crypto = require("crypto");
 const jwt = require("jsonwebtoken");
 const config = require("../config");
 const usersService = require("./users.service");
 
-async function register({email, password}) {
-    if (!email || !password) {
-        throw { status: 400, message: "Email and password required" };
+async function register({username, email, password}) {
+    if (!username || !email || !password) {
+        throw { status: 400, message: "Missing fields" };
     }
 
-    const existing = await usersService.register(email, password);
+    const existing = await usersService.findByUsername(username);
     if (existing) {
         throw { status: 400, message: "User already exists" };
     }
 
-    const passwordHash = await bcrypt.hash(password, 10);
-    const user = await usersService.createUser(email, passwordHash);
+    const salt = crypto.randomBytes(128).toString("base64");
+    const hash = crypto
+        .pbkdf2Sync(password, salt, 10000, 64, "sha512")
+        .toString("hex");
+
+    const user = await usersService.createUser({
+        username,
+        email,
+        password: hash,
+        salt,
+    });
+
+
 
     const token = jwt.sign({
             sub: user.id,
@@ -30,13 +41,17 @@ async function register({email, password}) {
 
 async function login({email, password}) {
     const user = await usersService.login(email, password);
+
     if(!user) {
         throw { status: 401, message: "Invalid credentials!" };
     }
 
-    const compare = await bcrypt.compare(password, user.passwordHash);
-    if (!compare) {
-        throw { status: 401, message: "Invalid credentials!" };
+    const hash = crypto
+        .pbkdf2Sync(password, user.salt, 10000, 64, "sha512")
+        .toString("hex");
+
+    if (hash !== user.password) {
+        throw { status: 401, message: "Invalid credentials" };
     }
 
     const token = jwt.sign({
