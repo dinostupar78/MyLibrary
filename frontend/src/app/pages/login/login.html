@@ -6,12 +6,12 @@
       <h2>Welcome to MyLibrary</h2>
       <p>Please login to your account</p>
 
-      <form>
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()"]>
         <label>Username</label>
-        <input type="text" placeholder="Username" />
+        <input type="text" placeholder="Username" formControlName="username"/>
 
         <label>Password</label>
-        <input type="password" placeholder="Password"/>
+        <input type="password" placeholder="Password" formControlName="password"/>
 
         <button class="login-btn">Log in</button>
       </form>

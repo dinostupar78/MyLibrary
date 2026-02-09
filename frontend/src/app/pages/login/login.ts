@@ -1,12 +1,13 @@
 import {Component, OnInit} from '@angular/core';
 import {RouterLink} from '@angular/router';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import {DialogService} from '../../shared/dialog/dialog.service';
 
 @Component({
   selector: 'app-login',
   imports: [
-    RouterLink
+    RouterLink,
+    ReactiveFormsModule
   ],
   templateUrl: './login.html',
   styleUrl: './login.css'

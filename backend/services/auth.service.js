@@ -3,8 +3,8 @@ const jwt = require("jsonwebtoken");
 const config = require("../config");
 const usersService = require("./users.service");
 
-async function register({username, name, email, password}) {
-    if (!username || !name || !email || !password) {
+async function register({username, name, email, password, avatarUrl}) {
+    if (!username || !name || !email || !password ) {
         throw { status: 400, message: "Missing fields" };
     }
 
@@ -25,6 +25,7 @@ async function register({username, name, email, password}) {
         email,
         password_hash: hash,
         salt,
+        user_image_url: avatarUrl,
     });
 
 

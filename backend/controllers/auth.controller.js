@@ -3,7 +3,28 @@ const authService = require("../services/auth.service");
 
 async function register(req, res) {
     try{
-        const result = await authService.register(req.body);
+        console.log("REQ.BODY:", req.body);
+        console.log("REQ.FILE:", req.file);
+
+        const { username, name, email, password } = req.body;
+        const avatar = req.file;
+
+        if (!avatar) {
+            return res.status(400).json({ message: "Avatar is required" });
+        }
+
+        if (!username || !name || !email || !password) {
+            return res.status(400).json({ message: "Missing fields" });
+        }
+
+        const avatarUrl = req.file ? `/uploads/avatars/${req.file.filename}` : null;
+
+
+        const result = await authService.register({
+            ...req.body,
+            avatarUrl
+        });
+
         res.status(201).json(result);
     }catch(err){
         res.status(err.status || 500).json({ message: err.message });

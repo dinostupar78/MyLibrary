@@ -6,39 +6,46 @@
       <h2>Create your account</h2>
       <p>Please fill in the form to register</p>
 
-      <form>
+      <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
 
         <label>Username</label>
-        <input
-          type="text"
-          placeholder="Username"
-          />
-
-        <label>Password</label>
-        <input
-          type="password"
-          placeholder="Password"
-          />
-
-        <label>Repeat password</label>
-        <input
-          type="password"
-          placeholder="Repeat password"
-         />
+        <input type="text" placeholder="Username" formControlName="username"/>
 
         <label>Name</label>
-        <input
-          type="text"
-          placeholder="Name"
-          />
+        <input type="text" placeholder="Name" formControlName="name"/>
+
+        <label>Password</label>
+        <input type="password" placeholder="Password" formControlName="password"/>
+
+        <label>Repeat password</label>
+        <input type="password" placeholder="Repeat password" formControlName="repeatPassword"/>
 
         <label>E-mail</label>
-        <input
-          type="email"
-          placeholder="E-mail"
-          />
+        <input type="email" placeholder="E-mail" formControlName="email"/>
 
-        <button class="register-btn">Register</button>
+
+        <input
+          type="file"
+          accept="image/*"
+          (change)="onFileSelected($event)"
+          #fileUpload
+          hidden/>
+
+        <div class="file-upload">
+          {{ fileName || "No file uploaded yet." }}
+
+          <button type="button" mat-mini-fab
+                  color="primary"
+                  class="upload-btn"
+                  (click)="$event.preventDefault();
+                  fileUpload.click()">
+            <mat-icon>attach_file</mat-icon>
+          </button>
+        </div>
+
+
+
+        <button type="submit" class="register-btn">Register</button>
 
       </form>
 

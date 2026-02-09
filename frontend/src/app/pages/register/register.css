@@ -183,6 +183,10 @@ input:focus {
   transform: scale(1.05);
 }
 
+.file-input {
+  display: none;
+}
+
 @media (max-width: 768px) {
   .register-page {
     flex-direction: column;
