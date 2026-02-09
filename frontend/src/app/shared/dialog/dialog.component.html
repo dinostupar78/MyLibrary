@@ -5,10 +5,7 @@
 </mat-dialog-content>
 
 <mat-dialog-actions align="end">
-  <button
-    *ngIf="data.type === 'confirm'"
-    mat-button
-    (click)="close(false)">
+  <button *ngIf="data.type === 'confirm'" (click)="close(false)">
     Cancel
   </button>
 
