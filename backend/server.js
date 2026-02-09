@@ -1,11 +1,16 @@
-const express = require('express');
-const morgan = require('morgan');
-const helmet = require('helmet');
-const pgp = require('pg-promise')
-const jwt = require('jsonwebtoken');
-const crypto = require('crypto');
-const db = require("./library");
+const express = require("express");
+const app = express();
+const config = require("./config");
 
-db.one("SELECT 1")
-    .then(() => console.log("✅ PostgreSQL connected"))
-    .catch(err => console.error("❌ PostgreSQL error", err));
+app.use(express.json());
+
+app.get("/ping", (req, res) => {
+    res.send("pong");
+});
+
+app.use("/api/auth", require("./routes/auth/auth.routes"));
+
+
+app.listen(config.port, () => {
+    console.log(`Running on port ${config.port}`);
+});

@@ -3,8 +3,8 @@ const jwt = require("jsonwebtoken");
 const config = require("../config");
 const usersService = require("./users.service");
 
-async function register({username, email, password}) {
-    if (!username || !email || !password) {
+async function register({username, name, email, password}) {
+    if (!username || !name || !email || !password) {
         throw { status: 400, message: "Missing fields" };
     }
 
@@ -13,6 +13,7 @@ async function register({username, email, password}) {
         throw { status: 400, message: "User already exists" };
     }
 
+
     const salt = crypto.randomBytes(128).toString("base64");
     const hash = crypto
         .pbkdf2Sync(password, salt, 10000, 64, "sha512")
@@ -20,8 +21,9 @@ async function register({username, email, password}) {
 
     const user = await usersService.createUser({
         username,
+        name,
         email,
-        password: hash,
+        password_hash: hash,
         salt,
     });
 
@@ -39,8 +41,8 @@ async function register({username, email, password}) {
 
 }
 
-async function login({email, password}) {
-    const user = await usersService.login(email, password);
+async function login({username, password}) {
+    const user = await usersService.findByUsername(username);
 
     if(!user) {
         throw { status: 401, message: "Invalid credentials!" };
@@ -50,7 +52,7 @@ async function login({email, password}) {
         .pbkdf2Sync(password, user.salt, 10000, 64, "sha512")
         .toString("hex");
 
-    if (hash !== user.password) {
+    if (hash !== user.password_hash) {
         throw { status: 401, message: "Invalid credentials" };
     }
 

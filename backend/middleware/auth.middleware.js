@@ -13,6 +13,8 @@ function requireAuth(req, res, next){
         return res.status(401).json({ message: "Invalid token format" });
     }
 
+    const token = parts[1];
+
     jwt.verify(token, config.jwtSecret, (err, decoded) => {
         if (err) {
             return res.status(401).json({ message: 'No token provided' });
