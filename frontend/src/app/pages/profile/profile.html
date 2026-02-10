@@ -4,7 +4,6 @@
 
   <form *ngIf="form" [formGroup]="form" class="profile-card">
 
-    <!-- HEADER -->
     <div class="profile-header">
       <div class="avatar-wrapper avatar-wrapper-large">
         <img
@@ -18,25 +17,53 @@
       <p class="profile-username">{{ u.username }}</p>
       <p class="profile-email">{{ u.email }}</p>
 
-      <div class="avatar-actions">
-        <input type="file" accept="image/*" (change)="onAvatarSelected($event)" />
+      <div class="avatar-actions mt-2">
 
-        <div *ngIf="avatarFile" class="edit-actions">
-          <button type="button" class="btn btn-success btn-sm" (click)="confirmAvatar()">Save</button>
-          <button type="button" class="btn btn-outline-secondary btn-sm" (click)="cancelAvatar()">Cancel</button>
+        <input
+          #fileInput
+          type="file"
+          accept="image/*"
+          hidden
+          (change)="onAvatarSelected($event)"
+        />
+
+        <button
+          type="button"
+          class="btn btn-outline-primary btn-sm"
+          (click)="fileInput.click()">
+          Choose file
+        </button>
+
+        <span class="ms-2 text-muted" *ngIf="!avatarFile">No file chosen</span>
+
+        <span class="ms-2 fw-medium" *ngIf="avatarFile">{{ avatarFile.name }}</span>
+
+        <div *ngIf="avatarFile" class="d-flex gap-2 mt-2">
+          <button
+            type="button"
+            class="btn btn-success btn-sm"
+            (click)="confirmAvatar()">
+            Save
+          </button>
+
+          <button
+            type="button"
+            class="btn btn-outline-secondary btn-sm"
+            (click)="cancelAvatar()">
+            Cancel
+          </button>
         </div>
+
       </div>
     </div>
 
-    <hr />
+    <hr/>
 
-    <!-- USERNAME -->
     <div class="profile-row">
       <span class="profile-label">Username</span>
       <span class="profile-value">{{ u.username }}</span>
     </div>
 
-    <!-- EMAIL -->
     <div class="profile-row">
       <span class="profile-label">Email</span>
 
@@ -60,7 +87,6 @@
       </div>
     </div>
 
-    <!-- NAME -->
     <div class="profile-row">
       <span class="profile-label">Name</span>
 

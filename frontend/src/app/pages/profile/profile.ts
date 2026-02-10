@@ -77,8 +77,6 @@ export class Profile implements OnInit {
       this.avatarPreview = reader.result as string;
     };
     reader.readAsDataURL(file);
-
-    input.value = '';
   }
 
 
