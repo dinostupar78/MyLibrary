@@ -11,7 +11,6 @@ async function startServer(){
         app.use(express.json());
         app.use(express.urlencoded({ extended: true }));
         app.use(morgan('dev'));
-        app.use('/uploads', express.static('uploads'));
 
         app.use((req, res, next) => {
             res.setHeader('Access-Control-Allow-Origin', '*');
@@ -20,7 +19,13 @@ async function startServer(){
             next();
         });
 
-        app.use("/api/auth", require("./routes/auth.routes"));
+        const authRoutes = require('./routes/auth.routes');
+        app.use("/api/auth", authRoutes);
+
+        const usersRoutes = require('./routes/users.routes');
+        app.use("/api/users", usersRoutes);
+
+        app.use("/uploads", express.static("uploads"));
 
         app.use(express.static(
             path.join(__dirname, 'public', 'frontend', 'browser')

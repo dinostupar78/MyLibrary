@@ -3,20 +3,21 @@
   <h3 class="profile-section-title text-center">User details</h3>
 
   <!-- AVATAR -->
-  <div class="profile-avatar-wrapper text-center mb-4">
+  <div class="avatar-wrapper avatar-wrapper-large">
     <img
       class="avatar large"
-      [src]="'http://localhost:3000' + u.user_image_url"
+      [src]="API_URL + user.user_image_url"
       alt="avatar"
     />
 
-    <div class="mt-2">
-      <input
-        type="file"
-        accept="image/*"
-        (change)="onAvatarSelected($event)"
-      />
-    </div>
+  </div>
+
+  <div class="mt-2">
+    <input
+      type="file"
+      accept="image/*"
+      (change)="onAvatarSelected($event)"
+    />
   </div>
 
   <div class="profile-details-wrapper">
@@ -42,5 +43,22 @@
 
     </div>
   </div>
+
+  <form [formGroup]="form" (ngSubmit)="saveProfile()">
+
+    <div class="profile-row">
+      <span class="profile-label">Name</span>
+      <input formControlName="name" />
+    </div>
+
+    <div class="profile-row">
+      <span class="profile-label">Email</span>
+      <input formControlName="email" />
+    </div>
+
+    <button type="submit">Save</button>
+
+  </form>
+
 
 </div>

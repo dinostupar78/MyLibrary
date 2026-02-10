@@ -70,40 +70,24 @@
   color: black;
 }
 
-.post-card {
-  background: #ffffff;
-  border-radius: 16px;
-  padding: 18px 20px;
-  box-shadow: 0 6px 22px rgba(0, 0, 0, 0.06);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+.avatar-wrapper {
+  background: #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.post-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08);
+.avatar-wrapper-large {
+  width: 120px;
+  height: 120px;
 }
 
-.post-header {
-  margin-bottom: 10px;
+.avatar-large {
+  width: 64px;
+  height: 64px;
+  object-fit: contain;
 }
 
-.post-author {
-  font-size: 14px;
-  color: black;
-}
 
-.post-author strong {
-  color: black;
-}
 
-.post-date {
-  margin-left: 6px;
-  font-size: 13px;
-  color: black;
-}
-
-.post-body {
-  font-size: 15px;
-  line-height: 1.6;
-  color: black;
-}

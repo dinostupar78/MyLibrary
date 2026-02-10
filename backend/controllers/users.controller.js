@@ -22,3 +22,5 @@ async function updateAvatar(req, res) {
     const updatedAvatar = await usersService.updateAvatar(userId, image_url);
     res.json(updatedAvatar);
 }
+
+module.exports = {getMyProfile, updateProfile, updateAvatar};
