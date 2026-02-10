@@ -1,64 +1,88 @@
-<div class="container mt-4 profile-container" *ngIf="user as u">
+<div class="container profile-container" *ngIf="user as u">
 
-  <h3 class="profile-section-title text-center">User details</h3>
+  <h3 class="profile-section-title">User profile</h3>
 
-  <!-- AVATAR -->
-  <div class="avatar-wrapper avatar-wrapper-large">
-    <img
-      class="avatar large"
-      [src]="API_URL + user.user_image_url"
-      alt="avatar"
-    />
+  <form *ngIf="form" [formGroup]="form" class="profile-card">
 
-  </div>
-
-  <div class="mt-2">
-    <input
-      type="file"
-      accept="image/*"
-      (change)="onAvatarSelected($event)"
-    />
-  </div>
-
-  <div class="profile-details-wrapper">
-
-    <h3 class="profile-details-title">User data</h3>
-
-    <div class="profile-card profile-details-card">
-
-      <div class="profile-row">
-        <span class="profile-label">Username</span>
-        <span class="profile-value">{{ u.username }}</span>
+    <!-- HEADER -->
+    <div class="profile-header">
+      <div class="avatar-wrapper avatar-wrapper-large">
+        <img
+          class="avatar large"
+          [src]="avatarPreview || (API_URL + u.user_image_url)"
+          alt="avatar"
+        />
       </div>
 
-      <div class="profile-row">
-        <span class="profile-label">Email</span>
-        <span class="profile-value">{{ u.email }}</span>
-      </div>
+      <h3 class="profile-name">{{ u.name }}</h3>
+      <p class="profile-username">{{ u.username }}</p>
+      <p class="profile-email">{{ u.email }}</p>
 
-      <div class="profile-row">
-        <span class="profile-label">Name</span>
-        <span class="profile-value">{{ u.name }}</span>
-      </div>
+      <div class="avatar-actions">
+        <input type="file" accept="image/*" (change)="onAvatarSelected($event)" />
 
+        <div *ngIf="avatarFile" class="edit-actions">
+          <button type="button" class="btn btn-success btn-sm" (click)="confirmAvatar()">Save</button>
+          <button type="button" class="btn btn-outline-secondary btn-sm" (click)="cancelAvatar()">Cancel</button>
+        </div>
+      </div>
     </div>
-  </div>
 
-  <form [formGroup]="form" (ngSubmit)="saveProfile()">
+    <hr />
 
+    <!-- USERNAME -->
     <div class="profile-row">
-      <span class="profile-label">Name</span>
-      <input formControlName="name" />
+      <span class="profile-label">Username</span>
+      <span class="profile-value">{{ u.username }}</span>
     </div>
 
+    <!-- EMAIL -->
     <div class="profile-row">
       <span class="profile-label">Email</span>
-      <input formControlName="email" />
+
+      <span *ngIf="editingField !== 'email'" class="profile-value">
+        {{ u.email }}
+      </span>
+
+      <input *ngIf="editingField === 'email'" formControlName="email" />
+
+      <button
+        type="button"
+        *ngIf="editingField !== 'email'"
+        class="btn btn-outline-primary btn-sm ms-3"
+        (click)="startEdit('email')">
+        Change
+      </button>
+
+      <div *ngIf="editingField === 'email'" class="edit-actions">
+        <button type="button" class="btn btn-success btn-sm" (click)="saveProfile()">Save</button>
+        <button type="button" class="btn btn-outline-secondary btn-sm" (click)="cancelEdit()">Cancel</button>
+      </div>
     </div>
 
-    <button type="submit">Save</button>
+    <!-- NAME -->
+    <div class="profile-row">
+      <span class="profile-label">Name</span>
+
+      <span *ngIf="editingField !== 'name'" class="profile-value">
+        {{ u.name }}
+      </span>
+
+      <input *ngIf="editingField === 'name'" formControlName="name" />
+
+      <button
+        type="button"
+        *ngIf="editingField !== 'name'"
+        class="btn btn-outline-primary btn-sm ms-3"
+        (click)="startEdit('name')">
+        Change
+      </button>
+
+      <div *ngIf="editingField === 'name'" class="edit-actions">
+        <button type="button" class="btn btn-success btn-sm" (click)="saveProfile()">Save</button>
+        <button type="button" class="btn btn-outline-secondary btn-sm" (click)="cancelEdit()">Cancel</button>
+      </div>
+    </div>
 
   </form>
-
-
 </div>

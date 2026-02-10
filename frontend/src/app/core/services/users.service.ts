@@ -18,10 +18,15 @@ export class UsersService {
     return this.http.put<any>(`${this.API_URL}/me`, data);
   }
 
-  updateAvatar(file: File){
+  updateAvatar(file: File) {
     const formData = new FormData();
     formData.append('avatar', file);
-    return this.http.post<any>(`${this.API_URL}/me`, formData);
+
+    return this.http.put<any>(
+      `${this.API_URL}/me/avatar`,
+      formData
+    );
   }
+
 
 }

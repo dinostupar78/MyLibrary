@@ -17,6 +17,10 @@ export class Profile implements OnInit {
   form!: FormGroup;
   user: any;
 
+  editingField: 'name' | 'email' | null = null;
+  avatarFile: File | null = null;
+  avatarPreview: string | null = null;
+
   API_URL = "http://localhost:3000";
 
   constructor(
@@ -35,24 +39,53 @@ export class Profile implements OnInit {
     });
   }
 
+
+  startEdit(field: 'name' | 'email') {
+    this.editingField = field;
+  }
+
+  cancelEdit() {
+    this.form.patchValue({
+      name: this.user.name,
+      email: this.user.email
+    });
+    this.editingField = null;
+  }
+
   saveProfile() {
     this.usersService.updateProfile(this.form.value).subscribe(updated => {
+      this.user = updated;
+
       this.authService.saveAuth(
         this.authService.getToken()!,
         updated
       );
+
+      this.editingField = null;
     });
   }
 
   onAvatarSelected(event: Event) {
-    const file = (event.target as HTMLInputElement).files?.[0];
-    if(!file)
-      return;
+    const input = event.target as HTMLInputElement;
+    const file = input.files?.[0];
+    if (!file) return;
+
+    this.avatarFile = file;
 
     const reader = new FileReader();
+    reader.onload = () => {
+      this.avatarPreview = reader.result as string;
+    };
     reader.readAsDataURL(file);
 
-    this.usersService.updateAvatar(file).subscribe(updated => {
+    input.value = '';
+  }
+
+
+  confirmAvatar() {
+    if (!this.avatarFile) return;
+
+    this.usersService.updateAvatar(this.avatarFile).subscribe(updated => {
       this.user = {
         ...this.user,
         user_image_url: updated.user_image_url
@@ -62,7 +95,15 @@ export class Profile implements OnInit {
         this.authService.getToken()!,
         this.user
       );
+
+      this.avatarFile = null;
+      this.avatarPreview = null;
     });
+  }
+
+  cancelAvatar() {
+    this.avatarFile = null;
+    this.avatarPreview = null;
   }
 
 
