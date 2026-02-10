@@ -23,6 +23,7 @@ async function register({username, name, email, password, avatarUrl}) {
         username,
         name,
         email,
+        user_role: 'user',
         password_hash: hash,
         salt,
         user_image_url: avatarUrl,
@@ -45,7 +46,7 @@ async function register({username, name, email, password, avatarUrl}) {
             username: user.username,
             name: user.name,
             email: user.email,
-            role: user.user_role,
+            role: user.role,
             user_image_url: user.user_image_url
         }
     };
@@ -70,7 +71,7 @@ async function login({username, password}) {
     const token = jwt.sign({
             sub: user.id,
             email: user.email,
-            role: user.role },
+            role: user.role  },
         config.jwtSecret,
         { expiresIn: "24h" }
     );
@@ -82,7 +83,7 @@ async function login({username, password}) {
             username: user.username,
             name: user.name,
             email: user.email,
-            role: user.user_role,
+            role: user.role,
             user_image_url: user.user_image_url
         }
     };

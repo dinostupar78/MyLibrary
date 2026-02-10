@@ -25,6 +25,9 @@ async function startServer(){
         const usersRoutes = require('./routes/users.routes');
         app.use("/api/users", usersRoutes);
 
+        const adminRoutes = require('./routes/admin.routes');
+        app.use("/api/admin", adminRoutes);
+
         app.use("/uploads", express.static("uploads"));
 
         app.use(express.static(

@@ -1,0 +1,40 @@
+<div class="container mt-4">
+  <h2>Admin – Users</h2>
+
+  <table class="table table-striped mt-3">
+    <thead>
+    <tr>
+      <th>Avatar</th>
+      <th>Username</th>
+      <th>Email</th>
+      <th>Role</th>
+      <th></th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr *ngFor="let u of users">
+      <td>
+        <img
+          *ngIf="u.user_image_url"
+          [src]="API_URL + u.user_image_url"
+          width="40"
+          height="40"
+          class="rounded-circle"
+        />
+      </td>
+      <td>{{ u.username }}</td>
+      <td>{{ u.email }}</td>
+      <td>{{ u.user_role }}</td>
+      <td>
+        <button
+          class="btn btn-danger btn-sm"
+          (click)="delete(u.id)">
+          Delete
+        </button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
