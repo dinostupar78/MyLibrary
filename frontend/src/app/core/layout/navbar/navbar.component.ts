@@ -1,4 +1,4 @@
-import {Component, ElementRef, HostListener, OnInit, ViewChild} from '@angular/core';import {FaIconComponent, FontAwesomeModule} from '@fortawesome/angular-fontawesome';
+import {Component, HostListener, OnInit} from '@angular/core';import {FaIconComponent, FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 import {Router, RouterLink} from '@angular/router';
 import { faRightToBracket  } from '@fortawesome/free-solid-svg-icons';
 import {NgIf} from '@angular/common';
@@ -39,15 +39,6 @@ export class NavbarComponent implements OnInit {
 
   get isLoggedIn(): boolean {
     return !!this.user;
-  }
-
-  get profileInitials(): string {
-    if (!this.user?.name) return '';
-    return this.user.name
-      .split(' ')
-      .map((n: string) => n[0])
-      .join('')
-      .toUpperCase();
   }
 
   toggleProfileMenu(event: MouseEvent) {

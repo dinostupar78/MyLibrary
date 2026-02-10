@@ -1,0 +1,109 @@
+.profile-container {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.profile-section-title {
+  text-align: center;
+  font-weight: 600;
+  font-size: 22px;
+  color: black;
+  margin-bottom: 24px;
+}
+
+.profile-details-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 60px;
+}
+
+.profile-details-title {
+  font-size: 22px;
+  font-weight: 600;
+  color: black;
+  margin-bottom: 22px;
+  text-align: center;
+}
+
+.profile-details-card {
+  width: 100%;
+  max-width: 500px;
+  background: linear-gradient(135deg, #f9fafb, #ffffff);
+  border-radius: 20px;
+  padding: 28px 32px;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.06);
+}
+
+.profile-details-card .profile-row {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  padding: 14px 0;
+  border-bottom: 1px solid #eee;
+  text-align: center;
+}
+
+.profile-details-card .profile-row:last-child {
+  border-bottom: none;
+}
+
+.profile-details-card .profile-label {
+  min-width: 120px;
+  text-align: right;
+  font-weight: 600;
+  color: black;
+}
+
+.profile-details-card .profile-value {
+  min-width: 220px;
+  text-align: left;
+  font-weight: 500;
+  color: black;
+}
+
+.profile-posts-title {
+  text-align: center;
+  margin-bottom: 24px;
+  font-weight: 600;
+  font-size: 20px;
+  color: black;
+}
+
+.post-card {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 18px 20px;
+  box-shadow: 0 6px 22px rgba(0, 0, 0, 0.06);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.post-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08);
+}
+
+.post-header {
+  margin-bottom: 10px;
+}
+
+.post-author {
+  font-size: 14px;
+  color: black;
+}
+
+.post-author strong {
+  color: black;
+}
+
+.post-date {
+  margin-left: 6px;
+  font-size: 13px;
+  color: black;
+}
+
+.post-body {
+  font-size: 15px;
+  line-height: 1.6;
+  color: black;
+}

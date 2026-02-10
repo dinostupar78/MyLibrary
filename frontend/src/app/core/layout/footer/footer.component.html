@@ -31,14 +31,14 @@
             <a>Profile</a>
           </li>
         </ul>-->
-        <!--<ul class="footer-links">
-          <li>
-            <a>Logout</a>
-          </li>
-        </ul>-->
         <ul class="footer-links">
           <li>
-            <a [routerLink]="['/login']">Sign In</a>
+            <a *ngIf="user" (click)="logout()">Logout</a>
+          </li>
+        </ul>
+        <ul class="footer-links">
+          <li>
+            <a *ngIf="!user" [routerLink]="['/login']">Sign In</a>
           </li>
         </ul>
       </div>
@@ -46,7 +46,7 @@
     <hr>
     <div class="row">
       <div class="col-md-8 col-sm-6">
-        <p class="copyright-text">Copyright &copy; All Rights Reserved by MyLibrary.</p>
+        <p class="copyright-text">Copyright &copy; {{currentYear}} All Rights Reserved by MyLibrary.</p>
       </div>
     </div>
   </div>
