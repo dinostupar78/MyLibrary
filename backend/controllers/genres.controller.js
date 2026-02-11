@@ -59,19 +59,19 @@ async function updateGenre(req, res) {
 }
 
 async function deleteGenre(req, res) {
-    try{
-        const { id } = req.params;
+    try {
+        const {id} = req.params;
 
-        const currentGenre = await genresService.findById(id);
-        if(!currentGenre){
-            return res.status(401).json({message: 'Genre not found'});
+        const existingGenre = await genresService.deleteGenre(id);
+
+        if (existingGenre.rowCount === 0) {
+            return res.status(404).json({ message: "Genre not found" });
         }
 
-        const deletedGenre = await genresService.deleteById(id);
-        res.json({ success: true, deletedGenre });
+        res.json({ success: true });
 
-    } catch(err){
-        res.status(404).send("Failed to delete genre");
+    } catch (err) {
+        res.status(500).json({ message: "Failed to delete genre" });
     }
 }
 

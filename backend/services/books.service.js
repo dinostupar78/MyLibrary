@@ -44,10 +44,8 @@ function updateBook(id, {
 }
 
 
-
-
 function deleteBook(id) {
-    return db.none(`DELETE FROM books WHERE id = $1`, [id]);
+    return db.result(`DELETE FROM books WHERE id = $1`, [id]);
 }
 
 module.exports = {findAll, findById, createBook, updateBook, deleteBook};

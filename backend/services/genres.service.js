@@ -35,8 +35,8 @@ function updateGenre(id, name){
     RETURNING id, name, created_at`, [name, id]);
 }
 
-function deleteById(id) {
-    return db.result(`DELETE FROM genres WHERE id = $1`, [id], r => r.rowCount);
+function deleteGenre(id) {
+    return db.result(`DELETE FROM genres WHERE id = $1`, [id]);
 }
 
-module.exports = {findAll, findById, findByName, createGenre, updateGenre, deleteById};
+module.exports = {findAll, findById, findByName, createGenre, updateGenre, deleteGenre};

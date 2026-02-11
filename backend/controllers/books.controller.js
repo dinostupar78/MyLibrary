@@ -51,19 +51,19 @@ async function updateBook(req, res) {
 }
 
 async function deleteBook(req, res) {
-    try{
+    try {
         const existingBook = await booksService.deleteBook(req.params.id);
 
-        if(!existingBook){
-            return res.status(404).json({message: 'Book not found'});
+        if (existingBook.rowCount === 0) {
+            return res.status(404).json({ message: "Book not found" });
         }
 
-        await booksService.deleteBook(req.params.id);
         res.json({ success: true });
-    } catch (err){
-        res.status(500).json({ message: 'Failed to delete book' });
-    }
 
+    } catch (err) {
+        res.status(500).json({ message: "Failed to delete book" });
+    }
 }
+
 
 module.exports = {getAllBooks, getBookById, createBook, updateBook, deleteBook};

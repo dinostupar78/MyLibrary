@@ -8,3 +8,5 @@ router.get("/:id", getBookById)
 router.post("/", requireAuth, requireAdmin, createBook);
 router.put("/:id", requireAuth, requireAdmin, updateBook);
 router.delete("/:id", requireAuth, requireAdmin, deleteBook);
+
+module.exports = router;
