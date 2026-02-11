@@ -28,6 +28,9 @@ async function startServer(){
         const adminRoutes = require('./routes/admin.routes');
         app.use("/api/admin", adminRoutes);
 
+        const genereRoutes = require('./routes/genres.routes');
+        app.use("/api/genres", genereRoutes)
+
         app.use("/uploads", express.static("uploads"));
 
         app.use(express.static(

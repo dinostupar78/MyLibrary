@@ -2,14 +2,7 @@ const db = require("../library");
 
 function findAll() {
     return db.any(`
-        SELECT
-            id,
-            username,
-            name,
-            email,
-            user_role AS role,
-            user_image_url,
-            created_at
+        SELECT id, username, name, email, user_role AS role, user_image_url, created_at
         FROM users
         ORDER BY created_at DESC
     `);

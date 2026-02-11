@@ -14,3 +14,34 @@ CREATE TABLE users (
 
   created_at TIMESTAMP DEFAULT now()
 );
+
+CREATE TABLE genres(
+	id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+	name VARCHAR(250) UNIQUE NOT NULL,
+	created_at TIMESTAMP DEFAULT NOW()
+
+);
+
+CREATE TABLE books (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    title VARCHAR(255) NOT NULL,
+    author VARCHAR(255) NOT NULL,
+    description TEXT,
+	image_url TEXT,
+    isbn VARCHAR(20) UNIQUE,
+    published_year INT,
+    google_books_id VARCHAR(100) UNIQUE,
+    genre_id UUID REFERENCES genres(id) ON DELETE SET NULL,
+    total_copies INT NOT NULL DEFAULT 1 CHECK (total_copies >= 0),
+    available_copies INT NOT NULL DEFAULT 1 CHECK (available_copies >= 0 AND available_copies <= total_copies),
+    created_at TIMESTAMP DEFAULT now()
+);
+
+CREATE TABLE loans(
+	id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+	borrow_date DATE NOT NULL DEFAULT CURRENT_DATE,
+	return_date DATE,
+	status VARCHAR(50) NOT NULL,
+	user_id UUID REFERENCES users(id) ON DELETE CASCADE,
+    book_id UUID REFERENCES books(id) ON DELETE CASCADE
+);
