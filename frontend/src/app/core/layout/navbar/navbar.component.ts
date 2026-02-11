@@ -1,8 +1,11 @@
-import {Component, HostListener, OnInit} from '@angular/core';import {FaIconComponent, FontAwesomeModule} from '@fortawesome/angular-fontawesome';
-import {Router, RouterLink} from '@angular/router';
+import {Component, HostListener, OnInit} from '@angular/core';
+import {FaIconComponent, FontAwesomeModule} from '@fortawesome/angular-fontawesome';
+import { CommonModule } from '@angular/common';
+import {NavigationEnd, Router, RouterLink} from '@angular/router';
 import { faRightToBracket  } from '@fortawesome/free-solid-svg-icons';
 import {NgIf} from '@angular/common';
 import {AuthService} from '../../services/auth.service';
+import {filter} from 'rxjs';
 
 @Component({
   selector: 'app-navbar',
@@ -10,7 +13,7 @@ import {AuthService} from '../../services/auth.service';
     FaIconComponent,
     FontAwesomeModule,
     RouterLink,
-    NgIf
+    CommonModule
   ],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.css',
@@ -35,6 +38,11 @@ export class NavbarComponent implements OnInit {
 
   toggleNavbar() {
     this.navbarOpened = !this.navbarOpened;
+  }
+
+  closeMenus() {
+    this.profileMenu = false;
+    this.navbarOpened = false;
   }
 
   get isLoggedIn(): boolean {

@@ -1,67 +1,108 @@
-<div
-  id="carouselExampleIndicators"
-  class="carousel slide"
-  data-bs-ride="carousel"
-  data-bs-interval="5000"
->
+<div>
 
-  <!-- INDICATORS -->
-  <div class="carousel-indicators">
-    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"></button>
-    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"></button>
-    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"></button>
+  <div
+    id="carouselExampleIndicators"
+    class="carousel slide"
+    data-bs-ride="carousel"
+    data-bs-interval="5000">
+
+    <div class="carousel-indicators">
+      <button type="button"
+              data-bs-target="#carouselExampleIndicators"
+              data-bs-slide-to="0"
+              class="active"></button>
+
+      <button type="button"
+              data-bs-target="#carouselExampleIndicators"
+              data-bs-slide-to="1"></button>
+
+      <button type="button"
+              data-bs-target="#carouselExampleIndicators"
+              data-bs-slide-to="2"></button>
+    </div>
+
+    <div class="carousel-inner">
+
+      <div class="carousel-item active">
+        <div class="hero-overlay"></div>
+
+        <img src="public/hero2.jpg" class="d-block w-100" alt="Slide 2">
+
+        <div class="carousel-caption">
+
+          <h5>
+            {{ (authService.user$ | async)
+            ? 'Welcome Back!'
+            : 'Join MyLibrary Today' }}
+          </h5>
+
+          <p>
+            {{ (authService.user$ | async)
+            ? 'Manage your books and profile settings.'
+            : 'Create an account to borrow books and explore the library.' }}
+          </p>
+
+          <a
+            [routerLink]="(authService.user$ | async) ? '/profile' : '/login'"
+            class="carousel-btn">
+            {{ (authService.user$ | async)
+            ? 'Go to Profile'
+            : 'Get Started' }}
+          </a>
+
+        </div>
+      </div>
+
+      <div class="carousel-item">
+        <div class="hero-overlay"></div>
+
+        <img src="public/hero1.jpg" class="d-block w-100" alt="Slide 1">
+
+        <div class="carousel-caption">
+          <h5>Explore Our Library</h5>
+          <p>
+            Discover a growing collection of books across multiple genres.
+            Find your next read in seconds.
+          </p>
+          <a routerLink="/books" class="carousel-btn">
+            Browse Books
+          </a>
+        </div>
+      </div>
+
+      <div class="carousel-item">
+        <div class="hero-overlay"></div>
+
+        <img src="public/hero3.jpg" class="d-block w-100" alt="Slide 3">
+
+        <div class="carousel-caption">
+          <h5>Learn About Us</h5>
+          <p>
+            Learn more about our mission to simplify
+            book management and borrowing.
+          </p>
+          <a routerLink="/about" class="carousel-btn">
+            Learn More
+          </a>
+        </div>
+      </div>
+
+    </div>
+
+    <button class="carousel-control-prev"
+            type="button"
+            data-bs-target="#carouselExampleIndicators"
+            data-bs-slide="prev">
+      <span class="carousel-control-prev-icon"></span>
+    </button>
+
+    <button class="carousel-control-next"
+            type="button"
+            data-bs-target="#carouselExampleIndicators"
+            data-bs-slide="next">
+      <span class="carousel-control-next-icon"></span>
+    </button>
+
   </div>
 
-  <!-- SLIDES -->
-  <div class="carousel-inner">
-
-    <div class="carousel-item active">
-      <div class="hero-overlay"></div>
-
-      <img src="public/hero1.jpg" class="d-block w-100" alt="Slide 1">
-
-      <div class="carousel-caption">
-        <h5>Welcome to BlogIT</h5>
-        <p>
-          Discover the latest articles, stories and inspiration
-          from the world of lifestyle, technology and personal growth.
-        </p>
-        <a href="#" class="carousel-btn">Read more</a>
-      </div>
-    </div>
-
-    <div class="carousel-item">
-      <div class="hero-overlay"></div>
-
-      <img src="public/hero2.jpg" class="d-block w-100" alt="Slide 2">
-
-      <div class="carousel-caption">
-        <h5>Become a successful blogger</h5>
-        <p>Everything you need in one place</p>
-        <a href="#" class="carousel-btn">Start now</a>
-      </div>
-    </div>
-
-    <div class="carousel-item">
-      <div class="hero-overlay"></div>
-
-      <img src="public/hero3.jpg" class="d-block w-100" alt="Slide 3">
-
-      <div class="carousel-caption">
-        <h5>Everything about us</h5>
-        <p>Everything you need to know about us is in one place</p>
-        <a href="#" class="carousel-btn">Learn more</a>
-      </div>
-    </div>
-
-  </div>
-
-  <!-- CONTROLS -->
-  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-    <span class="carousel-control-prev-icon"></span>
-  </button>
-
-  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-    <span class="carousel-control-next-icon"></span>
-  </button>
 </div>

@@ -1,0 +1,68 @@
+.container {
+  padding-top: 100px;
+  padding-bottom: 60px;
+}
+
+.d-flex {
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+h2 {
+  font-weight: 600;
+}
+
+.form-select {
+  min-width: 220px;
+  max-width: 250px;
+}
+
+.card {
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+}
+
+.card-body {
+  padding: 20px;
+}
+
+.card-title {
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.card-text {
+  margin-bottom: 6px;
+}
+
+.card img {
+  width: 100%;
+}
+
+.btn {
+  margin-right: 8px;
+  margin-top: 8px;
+}
+
+.books-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.filter-section {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+

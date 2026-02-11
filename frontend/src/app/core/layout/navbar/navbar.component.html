@@ -5,6 +5,7 @@
        (mouseenter)="isHovered = true"
        (mouseleave)="isHovered = false">
       <img
+        class="navbar-logo"
         [src]="isHovered ? 'public/logoOrange.png' : 'public/logoWhite.png'"
         alt="MyLibrary logo"
       />
@@ -39,14 +40,14 @@
         </li>
         <li
           *ngIf="user"
-          class="profile"
-          (click)="toggleProfileMenu($event)">
+          class="profile">
 
           <img
             *ngIf="user.user_image_url"
             [src]="API_URL + user.user_image_url"
             class="avatar"
-            alt="avatar"/>
+            alt="avatar"
+            (click)="toggleProfileMenu($event)"/>
 
           <div
             class="profile-menu"
@@ -70,16 +71,16 @@
 
             <div class="options">
               <div class="option">
-                <a class="nav-link" routerLink="/profile">
+                <a class="nav-link" (click)="closeMenus()" routerLink="/profile">
                   <i class="fa-solid fa-user"></i>
                   <span>Profile</span>
                 </a>
               </div>
 
               <div class="option">
-                <a routerLink="/admin" class="nav-link">
+                <a class="nav-link" (click)="closeMenus()" routerLink="/admin">
                   <i class="fa-solid fa-user-shield"></i>
-                  <span>AdminService</span>
+                  <span>Admin Panel</span>
                 </a>
               </div>
 

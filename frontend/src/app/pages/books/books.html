@@ -1,17 +1,29 @@
 <div class="container mt-4">
-  <div class="d-flex justify-content-between align-items-center mb-4">
-    <h2 class="mb-0">Library</h2>
+  <div class="books-header">
+    <h2>Library</h2>
 
-    <select
-      class="form-select w-auto"
-      [(ngModel)]="selectedGenreId"
-      (change)="onGenreChange()"
-    >
-      <option value="">All genres</option>
-      <option *ngFor="let g of genres" [value]="g.id">
-        {{ g.name }}
-      </option>
-    </select>
+    <button
+      *ngIf="isAdmin"
+      class="btn btn-success mb-3"
+      (click)="openAddBook()">
+      + Add Book
+    </button>
+
+    <div class="filter-section">
+      <select
+        class="form-select"
+        [(ngModel)]="selectedGenreId"
+        (change)="onGenreChange()">
+        <option value="">All genres</option>
+        <option *ngFor="let g of genres" [value]="g.id">
+          {{ g.name }}
+        </option>
+      </select>
+
+      <small class="text-muted">
+        Genres: {{ genres.length }}
+      </small>
+    </div>
   </div>
 
   <div class="card mb-3" *ngFor="let b of books" style="max-width: 540px;" >
@@ -28,6 +40,7 @@
         <div class="card-body">
           <h5 class="card-title">{{ b.title }}</h5>
           <p class="card-text">{{ b.author }}</p>
+          <p class="card-text">{{ b.genre_name }}</p>
           <p class="card-text">Available:
             <span class="fw-semibold"
               [class.text-success]="b.available_copies > 0"
@@ -43,6 +56,10 @@
             [routerLink]="['/books', b.id]">
             Details
           </a>
+
+          <button *ngIf="isAdmin" class="btn btn-danger btn-sm"
+                  (click)="deleteBook(b.id)">Delete
+          </button>
         </div>
       </div>
     </div>

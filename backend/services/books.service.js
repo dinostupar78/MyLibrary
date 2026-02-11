@@ -1,13 +1,24 @@
 const db = require("../library");
 
-function findAll() {
+function findAll(genreId) {
+    if (genreId) {
+        return db.any(`
+            SELECT b.*, g.name as genre_name
+            FROM books b
+            LEFT JOIN genres g ON b.genre_id = g.id
+            WHERE b.genre_id = $1
+            ORDER BY b.created_at DESC
+        `, [genreId]);
+    }
+
     return db.any(`
-    SELECT b.*, g.name as genre_name
-    FROM books b
-    LEFT JOIN genres g ON b.genre_id = g.id
-    ORDER BY b.created_at DESC
-  `);
+        SELECT b.*, g.name as genre_name
+        FROM books b
+                 LEFT JOIN genres g ON b.genre_id = g.id
+        ORDER BY b.created_at DESC
+    `);
 }
+
 
 function findById(id) {
     return db.oneOrNone(`

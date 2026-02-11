@@ -12,14 +12,21 @@ export class BooksService {
 
   getAllBooks(genreId?: string): Observable<any> {
     let params = new HttpParams();
+
     if (genreId) {
-      params.set('genreId', genreId);
+      params = params.set('genre', genreId);
     }
-    return this.http.get<any[]>(`${this.API_URL}/${params}`);
+
+    return this.http.get<any[]>(this.API_URL, { params });
   }
+
 
   getBookById(id: string): Observable<any>{
     return this.http.get<any[]>(`${this.API_URL}/${id}`);
+  }
+
+  deleteBook(id: string) {
+    return this.http.delete(`${this.API_URL}/${id}`);
   }
 
 }

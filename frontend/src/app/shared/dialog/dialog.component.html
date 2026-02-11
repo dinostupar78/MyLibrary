@@ -1,19 +1,31 @@
-<h2 mat-dialog-title>{{ data.title }}</h2>
+<div class="modal-header border-0">
+  <h5 class="modal-title">
+    {{ data.title }}
+  </h5>
+</div>
 
-<mat-dialog-content>
-  <p>{{ data.message }}</p>
-</mat-dialog-content>
+<div class="modal-body">
+  <p class="mb-0">{{ data.message }}</p>
+</div>
 
-<mat-dialog-actions align="end">
-  <button *ngIf="data.type === 'confirm'" (click)="close(false)">
+<div class="modal-footer border-0">
+
+  <button
+    *ngIf="data.type === 'confirm'"
+    class="btn btn-outline-secondary"
+    (click)="close(false)">
     Cancel
   </button>
 
   <button
-    mat-raised-button
-    color="primary"
+    class="btn"
+    [ngClass]="{
+      'btn-primary': data.type === 'confirm',
+      'btn-success': data.type === 'success',
+      'btn-danger': data.type === 'error'
+    }"
     (click)="close(true)">
     OK
   </button>
-</mat-dialog-actions>
 
+</div>

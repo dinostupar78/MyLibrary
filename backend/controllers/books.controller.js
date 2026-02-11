@@ -1,14 +1,15 @@
 const booksService = require('../services/books.service');
 
 async function getAllBooks(req, res) {
-    try{
-        const books = await booksService.findAll();
+    try {
+        const { genre } = req.query;
+        const books = await booksService.findAll(genre);
         res.status(200).json(books);
-
-    } catch (err){
+    } catch (err) {
         res.status(500).json({ message: 'Failed to fetch books' });
     }
 }
+
 
 async function getBookById(req, res) {
     try{
