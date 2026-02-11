@@ -1,0 +1,51 @@
+<div class="container mt-4">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h2 class="mb-0">Library</h2>
+
+    <select
+      class="form-select w-auto"
+      [(ngModel)]="selectedGenreId"
+      (change)="onGenreChange()"
+    >
+      <option value="">All genres</option>
+      <option *ngFor="let g of genres" [value]="g.id">
+        {{ g.name }}
+      </option>
+    </select>
+  </div>
+
+  <div class="card mb-3" *ngFor="let b of books" style="max-width: 540px;" >
+    <div class="row g-0">
+      <div class="col-md-4">
+        <img
+          [src]="b.image_url ? (API_URL + b.image_url) : 'public/bookPlaceholder.png'"
+          class="img-fluid rounded-start"
+          style="height: 250px; object-fit: cover;"
+          alt="Book cover"
+        />
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5 class="card-title">{{ b.title }}</h5>
+          <p class="card-text">{{ b.author }}</p>
+          <p class="card-text">Available:
+            <span class="fw-semibold"
+              [class.text-success]="b.available_copies > 0"
+              [class.text-danger]="b.available_copies === 0">
+              {{ b.available_copies }}
+            </span>
+          </p>
+          <button class="btn btn-primary btn-sm"
+            [disabled]="b.available_copies === 0">Borrow
+          </button>
+
+          <a class="btn btn-outline-secondary btn-sm"
+            [routerLink]="['/books', b.id]">
+            Details
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

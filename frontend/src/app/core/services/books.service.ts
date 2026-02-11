@@ -1,0 +1,25 @@
+import { Injectable } from '@angular/core';
+import { HttpClient, HttpParams } from '@angular/common/http';
+import { Observable } from 'rxjs';
+
+@Injectable({
+  providedIn: 'root',
+})
+export class BooksService {
+  private API_URL = 'http://localhost:3000/api/books';
+
+  constructor(private http: HttpClient) {}
+
+  getAllBooks(genreId?: string): Observable<any> {
+    let params = new HttpParams();
+    if (genreId) {
+      params.set('genreId', genreId);
+    }
+    return this.http.get<any[]>(`${this.API_URL}/${params}`);
+  }
+
+  getBookById(id: string): Observable<any>{
+    return this.http.get<any[]>(`${this.API_URL}/${id}`);
+  }
+
+}
