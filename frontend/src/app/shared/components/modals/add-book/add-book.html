@@ -1,0 +1,57 @@
+<div class="modal fade" id="addBookModal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h5 class="modal-title">Add Book</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <div class="modal-body">
+
+        <div class="mb-3">
+          <label>Title</label>
+          <input type="text" class="form-control"
+                 [(ngModel)]="newBook.title">
+        </div>
+
+        <div class="mb-3">
+          <label>Author</label>
+          <input type="text" class="form-control"
+                 [(ngModel)]="newBook.author">
+        </div>
+
+        <div class="mb-3">
+          <label>Genre</label>
+          <select class="form-select"
+                  [(ngModel)]="newBook.genre_id">
+            <option *ngFor="let g of genres"
+                    [value]="g.id">
+              {{ g.name }}
+            </option>
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label>Total copies</label>
+          <input type="number" class="form-control"
+                 [(ngModel)]="newBook.total_copies">
+        </div>
+
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn btn-secondary"
+                data-bs-dismiss="modal">
+          Cancel
+        </button>
+        <button class="btn btn-primary"
+                (click)="addBook()">
+          Save
+        </button>
+      </div>
+
+    </div>
+  </div>
+</div>
+

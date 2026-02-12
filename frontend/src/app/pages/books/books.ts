@@ -4,13 +4,15 @@ import {GenresService} from '../../core/services/genres.service';
 import {BooksService} from '../../core/services/books.service';
 import {FormsModule} from '@angular/forms';
 import {RouterLink} from '@angular/router';
+import {AddBook} from '../../shared/components/modals/add-book/add-book';
 
 @Component({
   selector: 'app-books',
   imports: [
     FormsModule,
     CommonModule,
-    RouterLink
+    RouterLink,
+    AddBook
   ],
   templateUrl: './books.html',
   styleUrl: './books.css',
@@ -59,8 +61,8 @@ export class Books implements OnInit {
   }
 
   openAddBook() {
-    // za sada samo test
-    console.log('Open add book form');
+
+
   }
 
   deleteBook(id: string) {
