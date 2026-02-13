@@ -25,6 +25,11 @@ export class BooksService {
     return this.http.get<any[]>(`${this.API_URL}/${id}`);
   }
 
+  createBook(formData: FormData): Observable<any> {
+    return this.http.post(this.API_URL, formData);
+  }
+
+
   deleteBook(id: string) {
     return this.http.delete(`${this.API_URL}/${id}`);
   }

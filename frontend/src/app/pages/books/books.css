@@ -55,14 +55,29 @@ h2 {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 30px;
-  flex-wrap: wrap;
-  gap: 20px;
+  margin-bottom: 25px;
 }
 
-.filter-section {
+.left-section {
   display: flex;
   align-items: center;
   gap: 15px;
 }
+
+.add-btn {
+  height: 38px;
+}
+
+.right-section {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.right-section select {
+  width: 200px;
+}
+
+
+
 

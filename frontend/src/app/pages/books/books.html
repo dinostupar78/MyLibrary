@@ -1,30 +1,55 @@
 <div class="container mt-4">
   <div class="books-header">
-    <h2>Library</h2>
 
-    <button
-      *ngIf="isAdmin"
-      class="btn btn-success mb-3"
-      (click)="openAddBook()">
-      + Add Book
-    </button>
+    <div class="left-section">
+      <h2 class="mb-0">Library</h2>
 
-    <div class="filter-section">
+      <button
+        *ngIf="isAdmin"
+        class="btn btn-success btn-sm add-btn"
+        (click)="openAddBook()">
+        Add Book
+      </button>
+
+      <button
+        *ngIf="isAdmin"
+        class="btn btn-success btn-sm add-btn"
+        (click)="openAddGenre()">
+        Add Genre
+      </button>
+    </div>
+
+    <div class="right-section d-flex align-items-center gap-2">
+
       <select
         class="form-select"
         [(ngModel)]="selectedGenreId"
         (change)="onGenreChange()">
+
         <option value="">All genres</option>
         <option *ngFor="let g of genres" [value]="g.id">
           {{ g.name }}
         </option>
       </select>
 
+      <button
+        *ngIf="isAdmin && selectedGenreId"
+        class="btn btn-outline-danger btn-sm"
+        style="min-width: 38px"
+        (click)="deleteGenre(selectedGenreId)">
+        🗑
+      </button>
+
+
       <small class="text-muted">
         Genres: {{ genres.length }}
       </small>
+
     </div>
+
+
   </div>
+
 
   <div class="card mb-3" *ngFor="let b of books" style="max-width: 540px;" >
     <div class="row g-0">
@@ -64,5 +89,17 @@
       </div>
     </div>
   </div>
-
 </div>
+
+<app-add-book
+  *ngIf="showAddBookModal"
+  [genres]="genres"
+  (created)="onBookCreated()"
+  (close)="closeAddBook()">
+</app-add-book>
+
+<app-add-genre
+  *ngIf="showAddGenreModal"
+  (created)="onGenreCreated()"
+  (close)="closeAddGenre()">
+</app-add-genre>

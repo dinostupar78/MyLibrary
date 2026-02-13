@@ -16,7 +16,7 @@ async function getBookById(req, res) {
         const book = await booksService.findById(req.params.id);
 
         if(!book){
-            res.status(404).json({message: 'Book not found'});
+            return res.status(404).json({message: 'Book not found'});
         }
 
         res.status(200).json(book);
@@ -27,7 +27,15 @@ async function getBookById(req, res) {
 
 async function createBook(req, res) {
     try{
-        const book = await booksService.createBook(req.body);
+        console.log("BODY:", req.body);
+        console.log("FILE:", req.file);
+
+        const image_url = req.file ? `/uploads/books/${req.file.filename}` : null;
+
+        const book = await booksService.createBook({
+            ...req.body,
+            image_url
+        });
         res.status(200).json(book);
 
     } catch (err){

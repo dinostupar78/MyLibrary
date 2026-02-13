@@ -5,6 +5,7 @@ import {BooksService} from '../../core/services/books.service';
 import {FormsModule} from '@angular/forms';
 import {RouterLink} from '@angular/router';
 import {AddBook} from '../../shared/components/modals/add-book/add-book';
+import {AddGenre} from '../../shared/components/modals/add-genre/add-genre';
 
 @Component({
   selector: 'app-books',
@@ -12,7 +13,8 @@ import {AddBook} from '../../shared/components/modals/add-book/add-book';
     FormsModule,
     CommonModule,
     RouterLink,
-    AddBook
+    AddBook,
+    AddGenre
   ],
   templateUrl: './books.html',
   styleUrl: './books.css',
@@ -28,6 +30,10 @@ export class Books implements OnInit {
 
   isAdmin = false;
 
+  showAddBookModal = false;
+
+  showAddGenreModal = false;
+
   constructor(private booksService: BooksService, private genresService: GenresService) {}
 
   ngOnInit(): void {
@@ -38,6 +44,23 @@ export class Books implements OnInit {
     this.loadBooks();
 
   }
+
+  openAddBook(){
+    this.showAddBookModal = true;
+  }
+
+  closeAddBook(){
+    this.showAddBookModal = false;
+  }
+
+  openAddGenre(){
+    this.showAddGenreModal = true;
+  }
+
+  closeAddGenre(){
+    this.showAddGenreModal = false;
+  }
+
 
   loadGenres(){
     this.genresService.getGenres().subscribe(genres => {
@@ -56,20 +79,50 @@ export class Books implements OnInit {
     });
   }
 
+  onBookCreated(){
+    this.loadBooks();
+    this.closeAddBook()
+  }
+
+  onGenreCreated(){
+    this.loadGenres();
+    this.closeAddGenre();
+  }
+
   onGenreChange(){
     this.loadBooks()
   }
 
-  openAddBook() {
-
-
-  }
 
   deleteBook(id: string) {
     if (!confirm('Delete this book?')) return;
 
-    this.booksService.deleteBook(id).subscribe(() => {
-      this.loadBooks();
+    this.booksService.deleteBook(id).subscribe({
+      next: () => {
+        this.loadBooks();
+      },
+      error: (err) => {
+        console.error(err);
+        alert(err.error?.message || 'Cannot delete book');
+      }
+
+    })
+  }
+
+  deleteGenre(id: string) {
+    if (!confirm('Delete this genre?'))
+      return;
+
+    this.genresService.deleteGenre(id).subscribe({
+      next: () => {
+        this.selectedGenreId = '';
+        this.loadGenres();
+        this.loadBooks();
+      },
+      error: (err) => {
+        console.error(err);
+        alert(err.error?.message || 'Cannot delete genre');
+      }
     });
   }
 

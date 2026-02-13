@@ -13,7 +13,6 @@ import {
 } from '@angular/forms';
 import {DialogService} from '../../shared/dialog/dialog.service';
 import {MatMiniFabButton} from '@angular/material/button';
-import {MatProgressBar} from '@angular/material/progress-bar';
 import {AuthService} from '../../core/services/auth.service';
 import {MatIcon} from '@angular/material/icon';
 

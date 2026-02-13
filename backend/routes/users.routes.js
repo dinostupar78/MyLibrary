@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const {requireAuth} = require("../middleware/auth.middleware");
-const upload = require("../middleware/upload.middleware");
+const upload = require("../middleware/uploadAvatars.middleware");
 const {getMyProfile, updateProfile, updateAvatar} = require("../controllers/users.controller");
 
 
