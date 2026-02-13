@@ -7,20 +7,17 @@
   align-items: center;
   justify-content: center;
 
-  padding: 15px;
+  padding: 20px;
   z-index: 1050;
 }
 
 .modal-box {
   background: white;
-  padding: 25px;
-  border-radius: 12px;
+  padding: 26px;
+  border-radius: 14px;
 
   width: 100%;
-  max-width: 450px;
-
-  max-height: 90vh;
-  overflow-y: auto;
+  max-width: 420px;
 
   box-shadow: 0 15px 40px rgba(0,0,0,0.2);
 }
@@ -36,11 +33,11 @@
     font-size: 18px;
   }
 
-  .d-flex {
+  .modal-box .d-flex {
     flex-direction: column;
   }
 
-  .d-flex .btn {
+  .modal-box .d-flex .btn {
     width: 100%;
   }
 }

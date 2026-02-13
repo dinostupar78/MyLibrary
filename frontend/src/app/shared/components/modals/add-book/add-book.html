@@ -13,13 +13,16 @@
         (change)="onFileSelected($event)"
       />
 
-      <div *ngIf="imagePreview" class="mt-3">
-        <img
-          [src]="imagePreview"
-          alt="preview"
-          style="width: 120px; height: 160px; object-fit: cover; border-radius: 8px; border: 1px solid #ddd;"
-        />
+      <div *ngIf="imagePreview" class="preview-wrapper mt-3">
+        <div class="preview-container">
+          <img
+            [src]="imagePreview"
+            alt="preview"
+            class="preview-image"
+          />
+        </div>
       </div>
+
     </div>
 
 

@@ -1,105 +1,129 @@
 <div class="container mt-4">
+
   <div class="books-header">
 
+    <!-- LEFT SIDE -->
     <div class="left-section">
-      <h2 class="mb-0">Library</h2>
 
-      <button
-        *ngIf="isAdmin"
-        class="btn btn-success btn-sm add-btn"
-        (click)="openAddBook()">
-        Add Book
-      </button>
+      <h2 class="page-title">Library</h2>
 
-      <button
-        *ngIf="isAdmin"
-        class="btn btn-success btn-sm add-btn"
-        (click)="openAddGenre()">
-        Add Genre
-      </button>
-    </div>
+      <div *ngIf="isAdmin" class="btn-group ms-3">
+        <button
+          class="btn btn-success btn-sm"
+          (click)="openAddBook()">
+          + Add Book
+        </button>
 
-    <div class="right-section d-flex align-items-center gap-2">
-
-      <select
-        class="form-select"
-        [(ngModel)]="selectedGenreId"
-        (change)="onGenreChange()">
-
-        <option value="">All genres</option>
-        <option *ngFor="let g of genres" [value]="g.id">
-          {{ g.name }}
-        </option>
-      </select>
-
-      <button
-        *ngIf="isAdmin && selectedGenreId"
-        class="btn btn-outline-danger btn-sm"
-        style="min-width: 38px"
-        (click)="deleteGenre(selectedGenreId)">
-        🗑
-      </button>
-
-
-      <small class="text-muted">
-        Genres: {{ genres.length }}
-      </small>
+        <button
+          class="btn btn-outline-success btn-sm"
+          (click)="openAddGenre()">
+          + Add Genre
+        </button>
+      </div>
 
     </div>
+
+
+    <!-- RIGHT SIDE -->
+    <div class="right-section">
+
+      <div class="genre-filter">
+
+        <select
+          class="form-select"
+          [(ngModel)]="selectedGenreId"
+          (change)="onGenreChange()">
+          <option value="">All genres</option>
+          <option *ngFor="let g of genres" [value]="g.id">
+            {{ g.name }}
+          </option>
+        </select>
+
+        <button
+          *ngIf="isAdmin && selectedGenreId"
+          class="btn btn-danger btn-sm"
+          (click)="deleteGenre(selectedGenreId)">
+          Delete
+        </button>
+
+      </div>
+
+      <div class="genre-count">
+        Genres: <span>{{ genres.length }}</span>
+      </div>
+
+    </div>
+
   </div>
-
 
   <div class="row g-4">
 
-    <div class="col-12 col-sm-6 col-lg-4" *ngFor="let b of books">
+    <div class="col-12 col-md-6 col-xl-4" *ngFor="let b of books">
 
-      <div class="card h-100 book-card">
+      <div class="card book-card h-100">
 
-        <img
-          [src]="b.image_url ? (API_URL + b.image_url) : 'public/bookPlaceholder.png'"
-          class="card-img-top book-cover"
-          alt="Book cover"/>
+        <div class="row g-0 align-items-center">
 
-        <div class="card-body d-flex flex-column">
-
-          <h5 class="card-title">{{ b.title }}</h5>
-          <p class="text-muted mb-1">{{ b.author }}</p>
-          <p class="small text-secondary mb-2">{{ b.genre_name }}</p>
-
-          <p class="mb-2">
-            <strong>Available:</strong>
-            <span
-              [class.text-success]="b.available_copies > 0"
-              [class.text-danger]="b.available_copies === 0">
-            {{ b.available_copies }}
-          </span>
-          </p>
-
-          <div class="mt-auto">
-
-            <button class="btn btn-primary btn-sm"
-                    [disabled]="b.available_copies === 0">
-              Borrow
-            </button>
-
-            <a class="btn btn-outline-secondary btn-sm"
-               [routerLink]="['/books', b.id]">
-              Details
-            </a>
-
-            <button *ngIf="isAdmin"
-                    class="btn btn-danger btn-sm"
-                    (click)="deleteBook(b.id)">
-              Delete
-            </button>
+          <div class="col-4">
+            <img
+              [src]="b.image_url ? (API_URL + b.image_url) : 'public/bookPlaceholder.png'"
+              class="book-cover-small"
+              alt="Book cover"
+            />
           </div>
+
+          <div class="col-8">
+            <div class="card-body">
+
+              <h6 class="card-title mb-1">{{ b.title }}</h6>
+              <p class="small mb-1 text-muted">{{ b.author }}</p>
+              <p class="small mb-1">{{ b.genre_name }}</p>
+
+              <p class="small mb-2">
+                Available:
+                <span
+                  class="fw-semibold"
+                  [class.text-success]="b.available_copies > 0"
+                  [class.text-danger]="b.available_copies === 0">
+                  {{ b.available_copies }}
+                </span>
+              </p>
+
+              <div class="buttons">
+
+                <button class="btn btn-primary btn-sm"
+                        [disabled]="b.available_copies === 0">
+                  Borrow
+                </button>
+
+                <a class="btn btn-outline-secondary btn-sm"
+                   [routerLink]="['/books', b.id]">
+                  Details
+                </a>
+
+                <button *ngIf="isAdmin"
+                        class="btn btn-danger btn-sm"
+                        (click)="deleteBook(b.id)">
+                  Delete
+                </button>
+
+              </div>
+
+            </div>
+          </div>
+
         </div>
+
       </div>
+
     </div>
+
   </div>
 
+</div>
 
-  <app-add-book
+
+<app-add-book
   *ngIf="showAddBookModal"
   [genres]="genres"
   (created)="onBookCreated()"

@@ -3,111 +3,117 @@
   padding-bottom: 60px;
 }
 
-.d-flex {
-  gap: 20px;
-  flex-wrap: wrap;
-}
-
-h2 {
-  font-weight: 600;
-}
-
-.form-select {
-  min-width: 220px;
-  max-width: 250px;
-}
-
-.card {
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 4px 14px rgba(0,0,0,0.08);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 8px 20px rgba(0,0,0,0.12);
-}
-
-.card-body {
-  padding: 20px;
-}
-
-.card-title {
-  font-weight: 600;
-  margin-bottom: 8px;
-}
-
-.card-text {
-  margin-bottom: 6px;
-}
-
-.card img {
-  width: 100%;
-}
-
-.btn {
-  margin-right: 8px;
-  margin-top: 8px;
-}
-
 .books-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 25px;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.page-title {
+  font-weight: 600;
+  margin: 0;
 }
 
 .left-section {
   display: flex;
   align-items: center;
-  gap: 15px;
 }
 
-.add-btn {
-  height: 38px;
+.btn-group .btn {
+  padding: 6px 14px;
+  font-size: 0.8rem;
 }
 
 .right-section {
   display: flex;
   align-items: center;
-  gap: 15px;
+  gap: 25px;
+  flex-wrap: wrap;
 }
 
-.right-section select {
+.genre-filter {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.genre-filter .form-select {
+  width: 210px;
+}
+
+.genre-count {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #000;
+}
+
+.genre-count span {
+  color: #198754;
+  margin-left: 4px;
+}
+
+.form-select {
   width: 200px;
 }
 
 .book-card {
   border-radius: 14px;
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  overflow: hidden;
+  border: none;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  background: #fff;
 }
 
 .book-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 12px 25px rgba(0,0,0,0.12);
+  transform: translateY(-4px);
+  box-shadow: 0 10px 22px rgba(0,0,0,0.12);
 }
 
-.book-cover {
-  height: 280px;
+.book-cover-small {
+  width: 100%;
+  height: 170px;
   object-fit: cover;
+  border-right: 1px solid #f0f0f0;
 }
 
 .card-body {
-  padding: 18px;
+  padding: 16px 16px;
 }
 
 .card-title {
-  font-size: 1.1rem;
+  font-size: 0.95rem;
   font-weight: 600;
 }
 
-.btn {
-  margin-right: 6px;
-  margin-top: 6px;
+.small {
+  font-size: 0.8rem;
 }
 
+.buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
 
+.btn {
+  font-size: 0.7rem;
+  padding: 4px 8px;
+}
 
+@media (max-width: 768px) {
 
+  .books-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 
+  .right-section {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+}
