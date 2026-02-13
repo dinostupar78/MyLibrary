@@ -2,9 +2,14 @@ import {Component, OnInit} from '@angular/core';
 import {RouterLink} from '@angular/router';
 import {AuthService} from '../../core/services/auth.service';
 import { CommonModule } from '@angular/common';
-import {HttpClient} from '@angular/common/http';
-import {Stats, StatsService} from '../../core/services/stats.service';
+import {StatsService} from '../../core/services/stats.service';
 
+interface StatCard {
+  label: string;
+  value: number;
+  max: number;
+  offset: number;
+}
 
 @Component({
   selector: 'app-home',
@@ -17,36 +22,36 @@ import {Stats, StatsService} from '../../core/services/stats.service';
 })
 export class Home implements OnInit {
 
-  stats: Stats = {
-    totalBooks: 0,
-    totalGenres: 0,
-    totalUsers: 0,
-    availableCopies: 0
-  };
+  statCards: StatCard[] = [];
 
-  constructor(
-    public authService: AuthService,
-    private statsService: StatsService
-  ) {}
+  private radius = 60;
+  private circumference = 2 * Math.PI * this.radius;
+
+  constructor(public authService: AuthService, private statsService: StatsService) {}
 
   ngOnInit(): void {
     this.loadStats();
   }
 
   loadStats() {
-    this.statsService.getStats().subscribe({
-      next: (data) => {
-        // Postgres vraća stringove, pa osiguramo broj
-        this.stats = {
-          totalBooks: Number(data.totalBooks),
-          totalGenres: Number(data.totalGenres),
-          totalUsers: Number(data.totalUsers),
-          availableCopies: Number(data.availableCopies)
-        };
-      },
-      error: (err) => {
-        console.error('Failed to load stats', err);
-      }
+    this.statsService.getStats().subscribe(data => {
+      this.statCards = [
+        { label: 'Total Books', value: Number(data.totalBooks), max: 100, offset: this.circumference },
+        { label: 'Genres', value: Number(data.totalGenres), max: 20, offset: this.circumference },
+        { label: 'Registered Users', value: Number(data.totalUsers), max: 100, offset: this.circumference },
+        { label: 'Available Copies', value: Number(data.availableCopies), max: 200, offset: this.circumference },
+        { label: 'Borrowed Books', value: 0, max: 100, offset: this.circumference },
+        { label: 'Active Members', value: 0, max: 100, offset: this.circumference }
+      ];
+
+      setTimeout(() => this.animateCircles(), 200);
+    });
+  }
+
+  animateCircles() {
+    this.statCards.forEach(card => {
+      const percent = Math.min(card.value / card.max, 1);
+      card.offset = this.circumference - percent * this.circumference;
     });
   }
 }

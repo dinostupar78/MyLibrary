@@ -34,13 +34,10 @@ export class Register implements OnInit {
               private formBuilder: FormBuilder,
               private dialogService: DialogService) {}
 
-  isHovered = false;
   registerForm!: FormGroup;
 
   fileName = '';
   selectedFile: File | null = null;
-
-
 
   ngOnInit(): void {
     this.registerForm = this.formBuilder.group({

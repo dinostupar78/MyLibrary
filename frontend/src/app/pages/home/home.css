@@ -1,9 +1,7 @@
-/* ================= SLIDE WRAPPER ================= */
 .carousel-item {
   position: relative;
 }
 
-/* ================= IMAGE ================= */
 .carousel-item img {
   width: 100%;
   height: 100vh;
@@ -11,40 +9,47 @@
   object-position: center;
   position: relative;
   z-index: 0;
+  transform: translateZ(0);
+  will-change: transform;
 }
 
-/* ================= OVERLAY (zatamnjenje) ================= */
+
 .hero-overlay {
   position: absolute;
   inset: 0;
-  background: rgba(0, 0, 0, 0.45);
+  background: linear-gradient(to bottom, rgba(0,0,0,0.75), rgba(0,0,0,0.65), rgba(0,0,0,0.75));
   z-index: 1;
-  pointer-events: none; /* overlay nikad ne hvata evente */
+  pointer-events: none;
 }
 
-/* ================= TEXT ================= */
+
 .carousel-caption {
-  bottom: 25%;
+  bottom: 28%;
   transform: translateY(-20px);
   font-family: "Times New Roman", serif;
   z-index: 2;
+  text-align: center;
 }
 
 .carousel-caption h5 {
-  font-size: calc(1.5rem + 1vw);
+  font-size: calc(2rem + 1.5vw);
+  font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 2px;
-  margin-bottom: 0.5rem;
+  letter-spacing: 3px;
+  margin-bottom: 1rem;
+  color: #ffffff;
+  text-shadow: 0 4px 15px rgba(0,0,0,0.7);
 }
 
 .carousel-caption p {
-  font-size: calc(1rem + 0.5vw);
-  width: 75%;
+  font-size: calc(1.1rem + 0.4vw);
+  width: 70%;
   margin: auto;
   line-height: 1.9;
+  color: rgba(255,255,255,0.95);
+  text-shadow: 0 3px 10px rgba(0,0,0,0.6);
 }
 
-/* ================= BUTTON ================= */
 .carousel-btn {
   position: relative;
   display: inline-flex;
@@ -54,79 +59,119 @@
   padding: 0.75rem 1.8rem;
   font-size: 1.05rem;
   font-weight: 600;
-  border-radius: 999px; /* pill */
+  border-radius: 999px;
   background: linear-gradient(135deg, #ffffff, #f1f1f1);
   color: #111827;
   text-decoration: none;
-  box-shadow:
-    0 8px 20px rgba(0, 0, 0, 0.25);
-  transition:
-    transform 0.25s ease,
-    box-shadow 0.25s ease,
-    background 0.25s ease,
-    color 0.25s ease;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+  transition: all 0.25s ease;
 }
 
 .carousel-btn:hover {
   transform: translateY(-2px);
   background: linear-gradient(135deg, #FFA500, #ff8c00);
   color: #ffffff;
-  box-shadow:
-    0 12px 28px rgba(255, 165, 0, 0.45);
+  box-shadow: 0 12px 28px rgba(255, 165, 0, 0.45);
 }
 
 .carousel-btn:active {
   transform: translateY(0);
-  box-shadow:
-    0 6px 14px rgba(255, 165, 0, 0.35);
+  box-shadow: 0 6px 14px rgba(255, 165, 0, 0.35);
 }
 
-
-
-/* ================= CONTROLS (strelice) ================= */
 .carousel-control-prev,
 .carousel-control-next {
   z-index: 3;
 }
 
-/* ================= INDICATORS ================= */
 .carousel-indicators {
   z-index: 3;
 }
 
 .stats-section {
-  padding: 80px 0;
-  background: #f8f9fa;
+  padding: 120px 0;
+  background: linear-gradient(to bottom, #f9fafb, #eef2f7);
+}
+
+.stats-title {
+  text-align: center;
+  font-size: 2.4rem;
+  font-weight: 800;
+  margin-bottom: 70px;
+  letter-spacing: 1px;
+  position: relative;
+}
+
+.stats-title::after {
+  content: "";
+  width: 60px;
+  height: 4px;
+  background: #198754;
+  display: block;
+  margin: 15px auto 0;
+  border-radius: 4px;
 }
 
 .stat-card {
-  background: #ffffff;
-  padding: 40px 20px;
-  border-radius: 16px;
+  background: white;
+  border-radius: 22px;
+  padding: 45px 20px;
   text-align: center;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+  transition: all 0.35s ease;
 }
 
 .stat-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.12);
+  transform: translateY(-8px);
+  box-shadow: 0 20px 45px rgba(0,0,0,0.14);
+}
+
+.circle-wrapper {
+  position: relative;
+  width: 150px;
+  height: 150px;
+  margin: 0 auto 25px;
+}
+
+.progress-ring {
+  transform: rotate(-90deg);
+}
+
+.progress-ring-bg {
+  fill: none;
+  stroke: #e5e7eb;
+  stroke-width: 12;
+}
+
+.progress-ring-fill {
+  fill: none;
+  stroke: #198754;
+  stroke-width: 12;
+  stroke-linecap: round;
+  transition: stroke-dashoffset 1.3s cubic-bezier(.4,2,.6,1);
+  stroke-dasharray: 377;
 }
 
 .stat-number {
-  font-size: 2.8rem;
-  font-weight: 700;
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  font-weight: 800;
   color: #198754;
-  margin-bottom: 10px;
 }
 
 .stat-label {
-  font-size: 1rem;
-  font-weight: 500;
-  color: #333;
+  font-weight: 600;
+  font-size: 1.05rem;
+  color: #374151;
+  letter-spacing: 0.5px;
 }
 
 @media (max-width: 992px) {
+
   .carousel-item img {
     height: 70vh;
   }
@@ -140,15 +185,16 @@
   }
 
   .stats-section {
-    padding: 60px 0;
+    padding: 80px 0;
   }
 
-  .stat-number {
-    font-size: 2.2rem;
+  .stats-title {
+    font-size: 2rem;
   }
 }
 
 @media (max-width: 576px) {
+
   .carousel-item img {
     height: 50vh;
   }
@@ -168,14 +214,19 @@
   }
 
   .stats-section {
-    padding: 40px 0;
+    padding: 60px 0;
   }
 
   .stat-card {
-    padding: 30px 15px;
+    padding: 35px 15px;
+  }
+
+  .circle-wrapper {
+    width: 120px;
+    height: 120px;
   }
 
   .stat-number {
-    font-size: 1.8rem;
+    font-size: 1.6rem;
   }
 }

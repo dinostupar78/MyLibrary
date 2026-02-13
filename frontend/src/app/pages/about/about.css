@@ -4,7 +4,6 @@
   color: #333;
 }
 
-/* ABOUT */
 .about-hero {
   padding: 60px 0;
 }
@@ -22,7 +21,6 @@
   color: #555;
 }
 
-/* IMAGE */
 .image-wrapper {
   width: 300px;
   height: 300px;
@@ -40,7 +38,6 @@
   height: auto;
 }
 
-/* CONTACT */
 .contact-section {
   padding: 80px 0;
   background: #f7f7f7;
@@ -62,7 +59,77 @@
   border-color: #e69500;
 }
 
-/* RESPONSIVE */
+.contact-form-section {
+  padding: 80px 0;
+  font-family: "Times New Roman", serif;
+}
+
+.section-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #222222;
+  margin-bottom: 1rem;
+}
+
+.section-subtitle {
+  font-size: 1.2rem;
+  color: #666666;
+}
+
+.contact-form .form-label {
+  font-weight: 600;
+  color: #444444;
+  margin-bottom: 0.3rem;
+  display: block;
+}
+
+.contact-form .form-control {
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+  padding: 0.75rem 1rem;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  color: #333333;
+  transition: all 0.3s ease;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.contact-form .form-control:focus {
+  border-color: #0d6efd;
+  box-shadow: 0 0 0 3px rgba(13, 110, 253, 0.1);
+  outline: none;
+}
+
+.contact-form .form-control::placeholder {
+  color: #aaa;
+}
+
+.social-pill-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.65rem 1.8rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 999px;
+  background-color: #0d6efd;
+  color: #fff;
+  border: none;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 6px 14px rgba(13, 110, 253, 0.25);
+}
+
+.social-pill-link:hover {
+  background-color: #0056b3;
+  transform: translateY(-1px);
+  color: #fff;
+}
+
+.social-pill__icon {
+  font-size: 1rem;
+}
+
 @media (max-width: 768px) {
   .image-wrapper {
     width: 220px;

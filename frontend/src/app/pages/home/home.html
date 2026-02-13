@@ -57,7 +57,7 @@
       <img src="public/hero1.jpg" class="d-block w-100" alt="Slide 1">
 
       <div class="carousel-caption">
-        <h5>Explore Our Library</h5>
+        <h5>Explore Us</h5>
         <p>
           Discover a growing collection of books across multiple genres.
           Find your next read in seconds.
@@ -102,45 +102,49 @@
   </button>
 </div>
 
-<!-- ================= STATS SECTION ================= -->
-
-<div class="stats-section">
+<section class="stats-section">
   <div class="container">
+
+    <h2 class="stats-title">MyLibrary Statistics</h2>
 
     <div class="row g-4">
 
-      <div class="col-12 col-md-6 col-lg-4">
-        <div class="stat-card">
-          <div class="stat-number">{{ stats.totalBooks }}</div>
-          <div class="stat-label">Total Books</div>
-        </div>
-      </div>
+      <div class="col-12 col-md-6 col-lg-4" *ngFor="let item of statCards">
 
-      <div class="col-12 col-md-6 col-lg-4">
         <div class="stat-card">
-          <div class="stat-number">{{ stats.totalGenres }}</div>
-          <div class="stat-label">Genres</div>
-        </div>
-      </div>
 
-      <div class="col-12 col-md-6 col-lg-4">
-        <div class="stat-card">
-          <div class="stat-number">{{ stats.totalUsers }}</div>
-          <div class="stat-label">Registered Users</div>
-        </div>
-      </div>
+          <div class="circle-wrapper">
+            <svg class="progress-ring" width="140" height="140">
+              <circle
+                class="progress-ring-bg"
+                cx="70"
+                cy="70"
+                r="60" />
+              <circle
+                class="progress-ring-fill"
+                cx="70"
+                cy="70"
+                r="60"
+                [style.strokeDashoffset]="item.offset" />
+            </svg>
 
-      <div class="col-12 col-md-6 col-lg-4">
-        <div class="stat-card">
-          <div class="stat-number">{{ stats.availableCopies }}</div>
-          <div class="stat-label">Available Copies</div>
+            <div class="stat-number">
+              {{ item.value }}
+            </div>
+          </div>
+
+          <div class="stat-label">
+            {{ item.label }}
+          </div>
+
         </div>
+
       </div>
 
     </div>
-
   </div>
-</div>
+</section>
+
 
 
 
