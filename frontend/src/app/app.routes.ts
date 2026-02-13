@@ -6,6 +6,7 @@ import {About} from './pages/about/about';
 import {Profile} from './pages/profile/profile';
 import {Admin} from './pages/admin/admin';
 import {Books} from './pages/books/books';
+import {BookDetails} from './pages/book-details/book-details';
 
 export const routes: Routes = [
   { path: '', component: Home },
@@ -15,7 +16,7 @@ export const routes: Routes = [
   { path: 'admin', component: Admin },
   { path: 'profile', component: Profile },
   { path: 'books', component: Books },
-  //{ path: 'books/:id', component: BookDetails },
+  { path: 'books/:id', component: BookDetails },
 
 
   { path: '**', redirectTo: '' }

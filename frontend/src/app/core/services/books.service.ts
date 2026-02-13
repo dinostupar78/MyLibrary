@@ -21,9 +21,10 @@ export class BooksService {
   }
 
 
-  getBookById(id: string): Observable<any>{
-    return this.http.get<any[]>(`${this.API_URL}/${id}`);
+  getBookById(id: string) {
+    return this.http.get<any>(`${this.API_URL}/${id}`);
   }
+
 
   createBook(formData: FormData): Observable<any> {
     return this.http.post(this.API_URL, formData);

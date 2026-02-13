@@ -78,6 +78,36 @@ h2 {
   width: 200px;
 }
 
+.book-card {
+  border-radius: 14px;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.book-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 25px rgba(0,0,0,0.12);
+}
+
+.book-cover {
+  height: 280px;
+  object-fit: cover;
+}
+
+.card-body {
+  padding: 18px;
+}
+
+.card-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.btn {
+  margin-right: 6px;
+  margin-top: 6px;
+}
+
+
 
 
 
