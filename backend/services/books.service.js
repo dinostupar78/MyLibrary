@@ -42,17 +42,51 @@ function createBook({title, author, description, image_url, isbn, published_year
 }
 
 function updateBook(id, {
-    title, author, description, image_url, isbn, published_year,
-    google_books_id, genre_id, total_copies, available_copies
+    title,
+    author,
+    description,
+    image_url,
+    isbn,
+    published_year,
+    google_books_id,
+    genre_id,
+    total_copies
 }) {
     return db.one(`
-    UPDATE books
-    SET title = $1, author = $2, description = $3, image_url = $4,  isbn = $5, published_year = $6,
-      google_books_id = $7, genre_id = $8, total_copies = $9, available_copies = $10
-    WHERE id = $11
-    RETURNING *`, [title, author, description, image_url, isbn, published_year,
-        google_books_id, genre_id, total_copies, available_copies, id]);
+        WITH borrowed_count AS (
+            SELECT COUNT(*) AS borrowed
+            FROM loans
+            WHERE book_id = $1 AND status = 'borrowed'
+        )
+
+        UPDATE books
+        SET
+            title = $2,
+            author = $3,
+            description = $4,
+            image_url = $5,
+            isbn = $6,
+            published_year = $7,
+            google_books_id = $8,
+            genre_id = $9,
+            total_copies = $10,
+            available_copies = $10 - (SELECT borrowed FROM borrowed_count)
+        WHERE id = $1
+            RETURNING *
+    `, [
+        id,
+        title,
+        author,
+        description,
+        image_url,
+        isbn,
+        published_year,
+        google_books_id,
+        genre_id,
+        total_copies
+    ]);
 }
+
 
 
 function deleteBook(id) {

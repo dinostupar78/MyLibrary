@@ -145,6 +145,68 @@
   </div>
 </section>
 
+<section class="top-books-section">
+  <div class="container">
+
+    <h2 class="stats-title mb-5">
+      Most Popular Books
+    </h2>
+
+    <div class="row g-4">
+
+      <div class="col-12 col-md-6 col-xl-4"
+           *ngFor="let b of topBooks">
+
+        <div class="card book-card h-100">
+
+          <div class="row g-0 align-items-center">
+
+           <div class="col-4">
+              <img
+                [src]="b.image_url
+                  ? ('http://localhost:3000' + b.image_url)
+                  : 'public/bookPlaceholder.png'"
+                class="book-cover-small"
+                alt="Book cover"
+              />
+            </div>
+
+            <div class="col-8">
+              <div class="card-body">
+
+                <h6 class="card-title mb-1">
+                  {{ b.title }}
+                </h6>
+
+                <p class="small mb-1 text-muted">
+                  {{ b.author }}
+                </p>
+
+                <p class="small mb-1">{{ b.genre_name }}
+
+                <p class="small mb-2">
+                  Borrowed:
+                  <span class="fw-semibold text-success">
+                    {{ b.borrow_count }}
+                  </span>
+                  times
+                </p>
+
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+
 
 
 

@@ -105,6 +105,12 @@
                 </a>
 
                 <button *ngIf="isAdmin"
+                        class="btn btn-warning btn-sm"
+                        (click)="openEditBook(b)">
+                  Edit
+                </button>
+
+                <button *ngIf="isAdmin"
                         class="btn btn-danger btn-sm"
                         (click)="deleteBook(b.id)">
                   Delete
@@ -132,6 +138,13 @@
   (created)="onBookCreated()"
   (close)="closeAddBook()">
 </app-add-book>
+
+<app-edit-book
+  *ngIf="showEditBookModal"
+  [book]="selectedBookForEdit"
+  (close)="closeEditBook()"
+  (updated)="onBookUpdated()">
+</app-edit-book>
 
 <app-add-genre
   *ngIf="showAddGenreModal"

@@ -1,3 +1,8 @@
+.loans-wrapper {
+  padding-top: 120px;
+  padding-bottom: 60px;
+}
+
 .loans-page {
   max-width: 1200px;
 }

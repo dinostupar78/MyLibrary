@@ -8,6 +8,7 @@ import {AddBook} from '../../shared/components/modals/add-book/add-book';
 import {AddGenre} from '../../shared/components/modals/add-genre/add-genre';
 import {LoansService} from '../../core/services/loans.service';
 import {AddLoan} from '../../shared/components/modals/add-loan/add-loan';
+import {EditBook} from '../../shared/components/modals/edit-book/edit-book';
 
 @Component({
   selector: 'app-books',
@@ -17,7 +18,8 @@ import {AddLoan} from '../../shared/components/modals/add-loan/add-loan';
     RouterLink,
     AddBook,
     AddGenre,
-    AddLoan
+    AddLoan,
+    EditBook
   ],
   templateUrl: './books.html',
   styleUrl: './books.css',
@@ -34,12 +36,12 @@ export class Books implements OnInit {
   isAdmin = false;
 
   showAddBookModal = false;
-
   showAddGenreModal = false;
-
   showBorrowModal = false;
+  showEditBookModal = false;
 
   selectedBook: any = null;
+  selectedBookForEdit: any = null;
 
   constructor(private booksService: BooksService,
               private genresService: GenresService,
@@ -155,6 +157,21 @@ export class Books implements OnInit {
   onBorrowSuccess() {
     this.closeBorrowModal();
     this.loadBooks();
+  }
+
+  openEditBook(book: any) {
+    this.selectedBookForEdit = { ...book }; // clone
+    this.showEditBookModal = true;
+  }
+
+  closeEditBook() {
+    this.showEditBookModal = false;
+    this.selectedBookForEdit = null;
+  }
+
+  onBookUpdated() {
+    this.loadBooks();
+    this.closeEditBook();
   }
 
 

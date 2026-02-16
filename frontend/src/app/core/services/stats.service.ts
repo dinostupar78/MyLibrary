@@ -7,6 +7,8 @@ export interface Stats {
   totalGenres: number;
   totalUsers: number;
   availableCopies: number;
+  borrowedBooks: number;
+  returnedBooks: number;
 }
 
 @Injectable({
@@ -21,5 +23,10 @@ export class StatsService {
   getStats(): Observable<Stats> {
     return this.http.get<Stats>(this.API_URL);
   }
+
+  getTopBooks(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.API_URL}/top-books`);
+  }
+
 
 }

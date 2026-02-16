@@ -20,14 +20,16 @@ export class BooksService {
     return this.http.get<any[]>(this.API_URL, { params });
   }
 
-
   getBookById(id: string) {
     return this.http.get<any>(`${this.API_URL}/${id}`);
   }
 
-
   createBook(formData: FormData): Observable<any> {
     return this.http.post(this.API_URL, formData);
+  }
+
+  updateBook(id: string, data: any) {
+    return this.http.put(`${this.API_URL}/${id}`, data);
   }
 
 

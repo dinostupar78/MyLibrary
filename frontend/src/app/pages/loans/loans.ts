@@ -1,10 +1,12 @@
 import {Component, OnInit} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {LoansService} from '../../core/services/loans.service';
+import {BookStatusPipe} from '../../shared/pipes/book-status-pipe';
 
 @Component({
   selector: 'app-loans',
-  imports: [CommonModule],
+  imports: [CommonModule,
+            BookStatusPipe],
   templateUrl: './loans.html',
   styleUrl: './loans.css',
 })
