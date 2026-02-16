@@ -22,9 +22,9 @@ async function getLoansByUser(req, res) {
 
 async function borrowBook(req, res) {
     try {
-        const { user_id, book_id, borrow_date, return_date } = req.body;
+        const { user_id, book_id, return_date } = req.body;
 
-        if (!user_id || !book_id) {
+        if (!user_id || !book_id || !return_date) {
             return res.status(400).json({ message: "Missing fields" });
         }
 
@@ -44,7 +44,7 @@ async function borrowBook(req, res) {
             return res.status(400).json({ message: "Book already borrowed" });
         }
 
-        await loansService.createLoan(user_id, book_id, borrow_date, return_date);
+        await loansService.createLoan(user_id, book_id, return_date);
 
         await booksService.updateBook(book_id, {
             ...book,
@@ -57,6 +57,7 @@ async function borrowBook(req, res) {
         res.status(500).json({ message: "Failed to borrow book" });
     }
 }
+
 
 async function returnBook(req, res) {
     try {

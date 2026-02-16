@@ -139,10 +139,11 @@
   (close)="closeAddGenre()">
 </app-add-genre>
 
-<app-borrow-book
+<app-add-loan
   *ngIf="showBorrowModal"
   [book]="selectedBook"
   (close)="closeBorrowModal()"
   (borrowed)="onBorrowSuccess()">
-</app-borrow-book>
+</app-add-loan>
+
 

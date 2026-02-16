@@ -25,14 +25,14 @@ export class LoansService {
 
   constructor(private http: HttpClient) {}
 
-  borrowBook(userId: string, bookId: string, borrowDate: string, returnDate: string) {
+  borrowBook(userId: string, bookId: string, returnDate: string) {
     return this.http.post(this.API_URL, {
       user_id: userId,
       book_id: bookId,
-      borrow_date: borrowDate,
       return_date: returnDate
     });
   }
+
 
 
   getLoans(userId?: string): Observable<any[]> {

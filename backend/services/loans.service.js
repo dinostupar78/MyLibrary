@@ -45,12 +45,12 @@ function findActiveLoan(userId, bookId) {
     `, [userId, bookId]);
 }
 
-function createLoan(userId, bookId, borrowDate, returnDate) {
+function createLoan(userId, bookId, returnDate) {
     return db.one(`
-        INSERT INTO loans (borrow_date, return_date, status, user_id, book_id)
-        VALUES ($1, $2, 'borrowed', $3, $4)
+        INSERT INTO loans (status, user_id, book_id, return_date)
+        VALUES ('borrowed', $1, $2, $3)
             RETURNING *
-    `, [borrowDate, returnDate, userId, bookId]);
+    `, [userId, bookId, returnDate]);
 }
 
 

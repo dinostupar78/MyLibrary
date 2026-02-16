@@ -7,6 +7,7 @@ import {Profile} from './pages/profile/profile';
 import {Admin} from './pages/admin/admin';
 import {Books} from './pages/books/books';
 import {BookDetails} from './pages/book-details/book-details';
+import {Loans} from './pages/loans/loans';
 
 export const routes: Routes = [
   { path: '', component: Home },
@@ -16,6 +17,7 @@ export const routes: Routes = [
   { path: 'admin', component: Admin },
   { path: 'profile', component: Profile },
   { path: 'books', component: Books },
+  { path: 'loans', component: Loans },
   { path: 'books/:id', component: BookDetails },
 
 

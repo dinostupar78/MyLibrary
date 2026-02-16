@@ -7,6 +7,7 @@ import {RouterLink} from '@angular/router';
 import {AddBook} from '../../shared/components/modals/add-book/add-book';
 import {AddGenre} from '../../shared/components/modals/add-genre/add-genre';
 import {LoansService} from '../../core/services/loans.service';
+import {AddLoan} from '../../shared/components/modals/add-loan/add-loan';
 
 @Component({
   selector: 'app-books',
@@ -15,7 +16,8 @@ import {LoansService} from '../../core/services/loans.service';
     CommonModule,
     RouterLink,
     AddBook,
-    AddGenre
+    AddGenre,
+    AddLoan
   ],
   templateUrl: './books.html',
   styleUrl: './books.css',
@@ -133,27 +135,14 @@ export class Books implements OnInit {
     });
   }
 
-  borrowBook(bookId: string) {
-
-    const user = JSON.parse(localStorage.getItem('user') || '{}');
+  openBorrowModal(book: any) {
+    const user: any = JSON.parse(localStorage.getItem('user') || '{}');
 
     if (!user?.id) {
       alert('You must be logged in!');
       return;
     }
 
-    this.loansService.borrowBook(user.id, bookId).subscribe({
-      next: () => {
-        alert('Book borrowed successfully!');
-        this.loadBooks();
-      },
-      error: (err) => {
-        alert(err.error?.message || 'Borrow failed');
-      }
-    });
-  }
-
-  openBorrowModal(book: any) {
     this.selectedBook = book;
     this.showBorrowModal = true;
   }
@@ -164,8 +153,8 @@ export class Books implements OnInit {
   }
 
   onBorrowSuccess() {
-    this.loadBooks();
     this.closeBorrowModal();
+    this.loadBooks();
   }
 
 
