@@ -91,10 +91,13 @@
 
               <div class="buttons">
 
-                <button class="btn btn-primary btn-sm"
-                        [disabled]="b.available_copies === 0">
+                <button
+                  class="btn btn-primary btn-sm"
+                  [disabled]="b.available_copies === 0"
+                  (click)="openBorrowModal(b)">
                   Borrow
                 </button>
+
 
                 <a class="btn btn-outline-secondary btn-sm"
                    [routerLink]="['/books', b.id]">
@@ -135,3 +138,11 @@
   (created)="onGenreCreated()"
   (close)="closeAddGenre()">
 </app-add-genre>
+
+<app-borrow-book
+  *ngIf="showBorrowModal"
+  [book]="selectedBook"
+  (close)="closeBorrowModal()"
+  (borrowed)="onBorrowSuccess()">
+</app-borrow-book>
+

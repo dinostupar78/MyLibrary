@@ -6,6 +6,7 @@ import {FormsModule} from '@angular/forms';
 import {RouterLink} from '@angular/router';
 import {AddBook} from '../../shared/components/modals/add-book/add-book';
 import {AddGenre} from '../../shared/components/modals/add-genre/add-genre';
+import {LoansService} from '../../core/services/loans.service';
 
 @Component({
   selector: 'app-books',
@@ -34,7 +35,13 @@ export class Books implements OnInit {
 
   showAddGenreModal = false;
 
-  constructor(private booksService: BooksService, private genresService: GenresService) {}
+  showBorrowModal = false;
+
+  selectedBook: any = null;
+
+  constructor(private booksService: BooksService,
+              private genresService: GenresService,
+              private loansService: LoansService) {}
 
   ngOnInit(): void {
     const user = JSON.parse(localStorage.getItem('user') || '{}');
@@ -124,6 +131,41 @@ export class Books implements OnInit {
         alert(err.error?.message || 'Cannot delete genre');
       }
     });
+  }
+
+  borrowBook(bookId: string) {
+
+    const user = JSON.parse(localStorage.getItem('user') || '{}');
+
+    if (!user?.id) {
+      alert('You must be logged in!');
+      return;
+    }
+
+    this.loansService.borrowBook(user.id, bookId).subscribe({
+      next: () => {
+        alert('Book borrowed successfully!');
+        this.loadBooks();
+      },
+      error: (err) => {
+        alert(err.error?.message || 'Borrow failed');
+      }
+    });
+  }
+
+  openBorrowModal(book: any) {
+    this.selectedBook = book;
+    this.showBorrowModal = true;
+  }
+
+  closeBorrowModal() {
+    this.showBorrowModal = false;
+    this.selectedBook = null;
+  }
+
+  onBorrowSuccess() {
+    this.loadBooks();
+    this.closeBorrowModal();
   }
 
 

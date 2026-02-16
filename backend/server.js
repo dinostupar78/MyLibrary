@@ -4,6 +4,7 @@ const helmet = require('helmet');
 const app = express();
 const config = require("./config");
 const path = require("path");
+const statsRoutes = require("./routes/stats.routes");
 
 async function startServer(){
     try{
@@ -36,6 +37,9 @@ async function startServer(){
 
         const statsRoutes = require('./routes/stats.routes');
         app.use("/api/stats", statsRoutes);
+
+        const loansRoutes = require('./routes/loans.routes');
+        app.use("/api/loans", loansRoutes);
 
         app.use("/uploads", express.static("uploads"));
 
