@@ -5,7 +5,7 @@ module.exports = {
         host: "localhost",
         port: 5432,
         user: "postgres",
-        password: "vaša_lozinka",
+        password: "dinogolf12",
         name: "library",
     },
 };
