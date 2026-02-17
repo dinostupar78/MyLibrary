@@ -1,13 +1,13 @@
 import {Component, OnInit} from '@angular/core';
 import {Router, RouterLink} from '@angular/router';
 import {AuthService} from '../../services/auth.service';
-import {NgIf} from '@angular/common';
+import {CommonModule} from '@angular/common';
 
 @Component({
   selector: 'app-footer',
   imports: [
     RouterLink,
-    NgIf
+    CommonModule,
   ],
   templateUrl: './footer.component.html',
   styleUrl: './footer.component.css',

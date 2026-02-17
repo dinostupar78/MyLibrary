@@ -14,7 +14,6 @@ import {AuthService} from '../../core/services/auth.service';
   styleUrl: './login.css'
 })
 export class Login implements OnInit {
-  isHovered = false;
   loginForm!: FormGroup;
 
   constructor(private formBuilder: FormBuilder,
@@ -30,20 +29,8 @@ export class Login implements OnInit {
   }
 
   onSubmit(){
-    this.loginForm.markAllAsTouched();
-
-    if (this.loginForm.invalid){
-      if (this.loginForm.get('username')?.errors?.['required']) {
-        this.dialogService.error('Username is required!');
-        return;
-      }
-
-      if (this.loginForm.get('password')?.errors?.['required']) {
-        this.dialogService.error('Password is required!');
-        return;
-      }
-
-      return;
+    if (this.loginForm.invalid) {
+      return this.dialogService.error('Please enter username and password');
     }
 
     const { username, password } = this.loginForm.value;
@@ -51,21 +38,17 @@ export class Login implements OnInit {
     this.authService.login({ username, password }).subscribe({
       next: (res) => {
 
-        if (!res || !res.token || !res.user) {
-          this.dialogService.error('Invalid username or password!');
-          return;
-        }
-
         this.authService.saveAuth(res.token, res.user);
 
-        this.dialogService.success('Login successful!')
+        this.dialogService.success('Login successful!');
         this.router.navigate(['/']);
 
       },
       error: () => {
-        this.dialogService.error('Login response invalid!');
+        this.dialogService.error('Invalid credentials');
       }
     });
+
   }
 
 

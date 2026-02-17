@@ -10,7 +10,7 @@ import {BookDetails} from './pages/book-details/book-details';
 import {Loans} from './pages/loans/loans';
 import {GuestGuard} from './core/guards/guest.guard';
 import {AuthGuard} from './core/guards/auth.guard';
-import {AdminGuard} from './core/guards/admin-guard';
+import {AdminGuard} from './core/guards/admin.guard';
 
 export const routes: Routes = [
   { path: '', component: Home },

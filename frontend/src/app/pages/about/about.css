@@ -22,8 +22,8 @@
 }
 
 .image-wrapper {
-  width: 300px;
-  height: 300px;
+  width: 360px;
+  height: 360px;
   margin: auto;
   border-radius: 50%;
   background: #26272b;
@@ -34,7 +34,7 @@
 }
 
 .splash {
-  width: 70%;
+  width: 100%;
   height: auto;
 }
 

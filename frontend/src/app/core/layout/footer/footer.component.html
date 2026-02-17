@@ -4,7 +4,8 @@
       <div class="col-md-6">
         <h6 id="about">About</h6>
         <p class="text-justify">
-          <i>MyLibrary WANTS TO BE SIMPLE</i> - MyLibrary is a free platform for borrowing books.
+          Simple. Modern. Focused on books.<br>
+          MyLibrary is a free digital platform designed to make borrowing effortless.
         </p>
       </div>
 
@@ -16,29 +17,30 @@
 
       <div class="col-md-3">
         <h6>Quick Links</h6>
+
         <ul class="footer-links">
           <li>
-            <a [routerLink]="['']">Home</a>
+            <a routerLink="/">Home</a>
           </li>
-        </ul>
-        <ul class="footer-links">
+
           <li>
-            <a [routerLink]="['/about']">About</a>
+            <a routerLink="/books">Books</a>
           </li>
-        </ul>
-        <!--<ul class="footer-links">
-          <li>
-            <a>Profile</a>
+
+          <li *ngIf="user?.role === 'admin'">
+            <a routerLink="/loans">Loans</a>
           </li>
-        </ul>-->
-        <ul class="footer-links">
+
           <li>
-            <a *ngIf="user" (click)="logout()">Logout</a>
+            <a routerLink="/about">About</a>
           </li>
-        </ul>
-        <ul class="footer-links">
-          <li>
-            <a *ngIf="!user" [routerLink]="['/login']">Sign In</a>
+
+          <li *ngIf="user">
+            <a (click)="logout()">Logout</a>
+          </li>
+
+          <li *ngIf="!user">
+            <a routerLink="/login">Sign In</a>
           </li>
         </ul>
       </div>

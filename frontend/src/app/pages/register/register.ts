@@ -1,23 +1,22 @@
-import {Component, OnInit} from '@angular/core';
-import {Router, RouterLink} from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { Router, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
-
 import {
   AbstractControl,
   FormBuilder,
-  FormControl,
   FormGroup,
   ReactiveFormsModule,
   ValidationErrors,
   Validators
 } from '@angular/forms';
-import {DialogService} from '../../shared/dialog/dialog.service';
-import {MatMiniFabButton} from '@angular/material/button';
-import {AuthService} from '../../core/services/auth.service';
-import {MatIcon} from '@angular/material/icon';
+import { DialogService } from '../../shared/dialog/dialog.service';
+import { MatMiniFabButton } from '@angular/material/button';
+import { MatIcon } from '@angular/material/icon';
+import { AuthService } from '../../core/services/auth.service';
 
 @Component({
   selector: 'app-register',
+  standalone: true,
   imports: [
     CommonModule,
     RouterLink,
@@ -29,26 +28,26 @@ import {MatIcon} from '@angular/material/icon';
   styleUrl: './register.css',
 })
 export class Register implements OnInit {
-  constructor(private authService: AuthService,
-              private router: Router,
-              private formBuilder: FormBuilder,
-              private dialogService: DialogService) {}
 
   registerForm!: FormGroup;
-
-  fileName = '';
   selectedFile: File | null = null;
+  fileName = '';
+
+  constructor(
+    private fb: FormBuilder,
+    private authService: AuthService,
+    private router: Router,
+    private dialog: DialogService
+  ) {}
 
   ngOnInit(): void {
-    this.registerForm = this.formBuilder.group({
+    this.registerForm = this.fb.group({
       username: ['', [Validators.required, Validators.minLength(4)]],
       name: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(4)]],
       repeatPassword: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
-      imageAvatar: ['']
-    }, {validators: passwordsMatch});
-
+    }, { validators: passwordsMatch });
   }
 
   onFileSelected(event: Event) {
@@ -58,86 +57,74 @@ export class Register implements OnInit {
     const file = input.files[0];
 
     if (!file.type.startsWith('image/')) {
-      this.dialogService.error('Only images allowed');
+      this.dialog.error('Only image files are allowed');
       return;
     }
 
     this.selectedFile = file;
     this.fileName = file.name;
-
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
   }
 
-  onSubmit(){
-    this.registerForm.markAllAsTouched();
+  onSubmit() {
 
-    if(this.registerForm.invalid){
-      if(this.registerForm.get('username')?.errors?.['required']){
-        this.dialogService.error('Username already exists!');
-        return;
-      }
-
-      if(this.registerForm.get('username')?.errors?.['minlength']){
-        this.dialogService.error('Username must have at least 4 characters!');
-        return;
-      }
-
-      if (this.registerForm.get('password')?.errors?.['required']) {
-        this.dialogService.error('Password is required!');
-        return;
-      }
-
-      if (this.registerForm.errors?.['passwordsMismatch']) {
-        this.dialogService.error('Passwords do not match!');
-        return;
-      }
-
-      if(this.registerForm.get('name')?.errors?.['required']) {
-        this.dialogService.error('Name is required!');
-        return;
-      }
-
-      if (this.registerForm.get('email')?.errors?.['required']) {
-        this.dialogService.error('Email is required!');
-        return;
-      }
-
-      if (this.registerForm.get('email')?.errors?.['email']) {
-        this.dialogService.error('Please enter a valid email!');
-        return;
-      }
-
-      this.dialogService.error('Please fill in all required fields!');
+    if (this.registerForm.invalid) {
+      this.showValidationError();
       return;
-
     }
 
     const formData = new FormData();
+    const { username, name, email, password } = this.registerForm.value;
 
-    formData.append('username', this.registerForm.value.username);
-    formData.append('name', this.registerForm.value.name);
-    formData.append('email', this.registerForm.value.email);
-    formData.append('password', this.registerForm.value.password);
+    formData.append('username', username);
+    formData.append('name', name);
+    formData.append('email', email);
+    formData.append('password', password);
 
     if (this.selectedFile) {
       formData.append('avatar', this.selectedFile);
     }
 
     this.authService.register(formData).subscribe({
-      next: () => this.router.navigate(['/']),
-
+      next: () => {
+        this.dialog.success('Account created successfully!');
+        this.router.navigate(['/']);
+      },
       error: err => {
-        console.log('REGISTER ERROR', err);
-        this.dialogService.error(err.error?.message || 'Register failed');
+        this.dialog.error(err.error?.message || 'Registration failed');
       }
     });
-
-    const {username, password, name, email} = this.registerForm.value;
-
   }
 
+  private showValidationError() {
 
+    const f = this.registerForm;
+
+    if (f.get('username')?.hasError('required'))
+      return this.dialog.error('Username is required');
+
+    if (f.get('username')?.hasError('minlength'))
+      return this.dialog.error('Username must be at least 4 characters');
+
+    if (f.get('name')?.hasError('required'))
+      return this.dialog.error('Name is required');
+
+    if (f.get('password')?.hasError('required'))
+      return this.dialog.error('Password is required');
+
+    if (f.get('password')?.hasError('minlength'))
+      return this.dialog.error('Password must be at least 4 characters');
+
+    if (f.get('email')?.hasError('required'))
+      return this.dialog.error('Email is required');
+
+    if (f.get('email')?.hasError('email'))
+      return this.dialog.error('Enter a valid email');
+
+    if (f.hasError('passwordsMismatch'))
+      return this.dialog.error('Passwords do not match');
+
+    this.dialog.error('Please fill all fields correctly');
+  }
 }
 
 function passwordsMatch(control: AbstractControl): ValidationErrors | null {

@@ -21,14 +21,12 @@ export class AddLoan {
   constructor(private loansService: LoansService) {}
 
   borrow() {
-    const user: any = JSON.parse(localStorage.getItem('user') || '{}');
-
     if (!this.returnDate) {
       alert('Please select return date');
       return;
     }
 
-    this.loansService.borrowBook(user.id, this.book.id, this.returnDate)
+    this.loansService.borrowBook(this.book.id, this.returnDate)
       .subscribe({
         next: () => {
           this.borrowed.emit();

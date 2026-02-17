@@ -3,9 +3,6 @@ const authService = require("../services/auth.service");
 
 async function register(req, res) {
     try{
-        console.log("REQ.BODY:", req.body);
-        console.log("REQ.FILE:", req.file);
-
         const { username, name, email, password } = req.body;
         const avatar = req.file;
 

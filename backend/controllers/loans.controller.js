@@ -4,7 +4,7 @@ const booksService = require("../services/books.service");
 async function getAllLoans(req, res) {
     try {
         const loans = await loansService.findAll();
-        res.status(201).json(loans);
+        res.status(200).json(loans);
     } catch (err) {
         res.status(500).json({ message: "Failed to fetch loans" });
     }
@@ -14,7 +14,7 @@ async function getLoansByUser(req, res) {
     try {
         const { id } = req.params;
         const loans = await loansService.findByUser(id);
-        res.status(201).json(loans);
+        res.status(200).json(loans);
     } catch (err) {
         res.status(500).json({ message: "Failed to fetch user loans" });
     }
@@ -22,14 +22,14 @@ async function getLoansByUser(req, res) {
 
 async function borrowBook(req, res) {
     try {
-        const { user_id, book_id, return_date } = req.body;
+        const user_id = req.user.sub; // iz JWT-a
+        const { book_id, return_date } = req.body;
 
-        if (!user_id || !book_id || !return_date) {
+        if (!book_id || !return_date) {
             return res.status(400).json({ message: "Missing fields" });
         }
 
         const book = await booksService.findById(book_id);
-
         if (!book) {
             return res.status(404).json({ message: "Book not found" });
         }
@@ -39,21 +39,18 @@ async function borrowBook(req, res) {
         }
 
         const existingLoan = await loansService.findActiveLoan(user_id, book_id);
-
         if (existingLoan) {
             return res.status(400).json({ message: "Book already borrowed" });
         }
 
         await loansService.createLoan(user_id, book_id, return_date);
 
-        await booksService.updateBook(book_id, {
-            ...book,
-            available_copies: book.available_copies - 1
-        });
+        await booksService.decreaseAvailableCopies(book_id);
 
         res.status(201).json({ message: "Book borrowed successfully" });
 
     } catch (err) {
+        console.error("BORROW ERROR:", err);
         res.status(500).json({ message: "Failed to borrow book" });
     }
 }
@@ -74,13 +71,7 @@ async function returnBook(req, res) {
         }
 
         await loansService.markAsReturned(id);
-
-        const book = await booksService.findById(loan.book_id);
-
-        await booksService.updateBook(loan.book_id, {
-            ...book,
-            available_copies: book.available_copies + 1
-        });
+        await booksService.increaseAvailableCopies(loan.book_id);
 
         res.json({ message: "Book returned successfully" });
 
@@ -88,6 +79,7 @@ async function returnBook(req, res) {
         res.status(500).json({ message: "Failed to return book" });
     }
 }
+
 
 module.exports = {
     getAllLoans,

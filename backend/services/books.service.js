@@ -29,26 +29,35 @@ function findById(id) {
     `, [id]);
 }
 
-function createBook({title, author, description, image_url, isbn, published_year,
-                        google_books_id, genre_id, total_copies
-                    }) {
+function createBook({ title, author, description, image_url, genre_id, total_copies }) {
     return db.one(`
-        INSERT INTO books (title, author, description, image_url, isbn, published_year, 
-                           google_books_id, genre_id, total_copies, available_copies
+        INSERT INTO books (
+            title,
+            author,
+            description,
+            image_url,
+            genre_id,
+            total_copies,
+            available_copies
         )
-        VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$9)
-            RETURNING *`, [title, author, description, image_url, isbn, published_year,
-        google_books_id, genre_id, total_copies]);
+        VALUES ($1,$2,$3,$4,$5,$6,$6)
+            RETURNING *
+    `, [
+        title,
+        author,
+        description,
+        image_url,
+        genre_id,
+        total_copies
+    ]);
 }
+
 
 function updateBook(id, {
     title,
     author,
     description,
     image_url,
-    isbn,
-    published_year,
-    google_books_id,
     genre_id,
     total_copies
 }) {
@@ -65,12 +74,9 @@ function updateBook(id, {
             author = $3,
             description = $4,
             image_url = $5,
-            isbn = $6,
-            published_year = $7,
-            google_books_id = $8,
-            genre_id = $9,
-            total_copies = $10,
-            available_copies = $10 - (SELECT borrowed FROM borrowed_count)
+            genre_id = $6,
+            total_copies = $7,
+            available_copies = $7 - (SELECT borrowed FROM borrowed_count)
         WHERE id = $1
             RETURNING *
     `, [
@@ -79,18 +85,30 @@ function updateBook(id, {
         author,
         description,
         image_url,
-        isbn,
-        published_year,
-        google_books_id,
         genre_id,
         total_copies
     ]);
 }
 
-
-
 function deleteBook(id) {
     return db.result(`DELETE FROM books WHERE id = $1`, [id]);
 }
 
-module.exports = {findAll, findById, createBook, updateBook, deleteBook};
+function increaseAvailableCopies(bookId) {
+    return db.none(`
+        UPDATE books
+        SET available_copies = available_copies + 1
+        WHERE id = $1
+    `, [bookId]);
+}
+
+function decreaseAvailableCopies(bookId) {
+    return db.none(`
+        UPDATE books
+        SET available_copies = available_copies - 1
+        WHERE id = $1
+    `, [bookId]);
+}
+
+
+module.exports = {findAll, findById, createBook, updateBook, deleteBook, increaseAvailableCopies, decreaseAvailableCopies};
