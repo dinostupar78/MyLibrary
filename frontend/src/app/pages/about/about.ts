@@ -5,7 +5,6 @@ import emailjs from '@emailjs/browser';
 import {FormsModule} from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
-
 @Component({
   selector: 'app-about',
   imports: [FontAwesomeModule, FormsModule, CommonModule],
@@ -47,6 +46,5 @@ export class About {
       this.successMessage = '';
     });
   }
-
 
 }

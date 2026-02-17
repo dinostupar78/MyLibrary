@@ -1,3 +1,7 @@
+.admin-container {
+  margin-top: 120px;
+}
+
 .admin-table {
   border-collapse: separate;
   border-spacing: 0 12px;

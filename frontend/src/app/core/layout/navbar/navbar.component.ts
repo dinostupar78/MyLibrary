@@ -58,10 +58,7 @@ export class NavbarComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log('NAVBAR INIT');
-
     this.authService.user$.subscribe(user => {
-      console.log('NAVBAR USER:', user);
       this.user = user;
       this.isAdmin = user?.role === 'admin';
       this.isLoggedIn = !!user;

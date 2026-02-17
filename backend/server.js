@@ -3,8 +3,8 @@ const morgan = require('morgan');
 const helmet = require('helmet');
 const app = express();
 const config = require("./config");
+const db = require('./library');
 const path = require("path");
-const statsRoutes = require("./routes/stats.routes");
 
 async function startServer(){
     try{
@@ -52,6 +52,14 @@ async function startServer(){
                 path.join(__dirname, 'public', 'frontend', 'browser', 'index.html')
             );
         });
+
+        try {
+            const result = await db.one('SELECT NOW()');
+            console.log('PostgreSQL connected at:', result.now);
+        } catch (dbErr) {
+            console.error('PostgreSQL connection failed:', dbErr.message);
+            process.exit(1);
+        }
 
         app.listen(config.port, () => {
             console.log(`Running on port ${config.port}`);

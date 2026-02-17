@@ -27,9 +27,6 @@ async function getBookById(req, res) {
 
 async function createBook(req, res) {
     try{
-        console.log("BODY:", req.body);
-        console.log("FILE:", req.file);
-
         const image_url = req.file ? `/uploads/books/${req.file.filename}` : null;
 
         const book = await booksService.createBook({

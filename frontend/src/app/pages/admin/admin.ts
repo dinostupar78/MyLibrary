@@ -34,6 +34,4 @@ export class Admin implements OnInit {
     });
   }
 
-
-
 }
