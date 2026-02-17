@@ -125,7 +125,7 @@ export class Register implements OnInit {
     }
 
     this.authService.register(formData).subscribe({
-      next: () => this.router.navigate(['/login']),
+      next: () => this.router.navigate(['/']),
 
       error: err => {
         console.log('REGISTER ERROR', err);

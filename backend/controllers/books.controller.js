@@ -45,21 +45,28 @@ async function createBook(req, res) {
 
 async function updateBook(req, res) {
     try {
-
         const existingBook = await booksService.findById(req.params.id);
         if (!existingBook) {
             return res.status(404).json({ message: 'Book not found' });
         }
 
-        const book = await booksService.updateBook(req.params.id, req.body);
+        const image_url = req.file
+            ? `/uploads/books/${req.file.filename}`
+            : existingBook.image_url;
+
+
+        const book = await booksService.updateBook(req.params.id, {
+            ...req.body,
+            image_url
+        });
 
         res.status(200).json(book);
 
     } catch (err) {
-        console.error(err);
         res.status(500).json({ message: 'Failed to update book' });
     }
 }
+
 
 
 async function deleteBook(req, res) {

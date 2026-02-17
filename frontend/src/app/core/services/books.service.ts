@@ -28,10 +28,9 @@ export class BooksService {
     return this.http.post(this.API_URL, formData);
   }
 
-  updateBook(id: string, data: any) {
-    return this.http.put(`${this.API_URL}/${id}`, data);
+  updateBook(id: string, formData: FormData) {
+    return this.http.put(`${this.API_URL}/${id}`, formData);
   }
-
 
   deleteBook(id: string) {
     return this.http.delete(`${this.API_URL}/${id}`);

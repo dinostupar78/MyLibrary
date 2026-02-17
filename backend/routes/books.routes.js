@@ -7,7 +7,7 @@ const upload = require("../middleware/uploadBooks.middleware");
 router.get("/", getAllBooks);
 router.get("/:id", getBookById)
 router.post("/", requireAuth, requireAdmin, upload.single("image"), createBook);
-router.put("/:id", requireAuth, requireAdmin, updateBook);
+router.put('/:id', requireAuth, requireAdmin, upload.single('image'), updateBook);
 router.delete("/:id", requireAuth, requireAdmin, deleteBook);
 
 module.exports = router;

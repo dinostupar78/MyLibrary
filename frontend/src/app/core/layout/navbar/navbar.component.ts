@@ -1,11 +1,9 @@
 import {Component, HostListener, OnInit} from '@angular/core';
 import {FaIconComponent, FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 import { CommonModule } from '@angular/common';
-import {NavigationEnd, Router, RouterLink} from '@angular/router';
+import {Router, RouterLink} from '@angular/router';
 import { faRightToBracket  } from '@fortawesome/free-solid-svg-icons';
-import {NgIf} from '@angular/common';
 import {AuthService} from '../../services/auth.service';
-import {filter} from 'rxjs';
 
 @Component({
   selector: 'app-navbar',
@@ -19,15 +17,12 @@ import {filter} from 'rxjs';
   styleUrl: './navbar.component.css',
 })
 export class NavbarComponent implements OnInit {
-  ngOnInit() {
-    this.authService.user$.subscribe(user => {
-      this.user = user;
-    });
-  }
 
   isHovered = false;
   navbarOpened = false;
   profileMenu = false;
+  isAdmin = false;
+  isLoggedIn = false;
 
   faRightToBracket = faRightToBracket;
   API_URL = 'http://localhost:3000';
@@ -45,10 +40,6 @@ export class NavbarComponent implements OnInit {
     this.navbarOpened = false;
   }
 
-  get isLoggedIn(): boolean {
-    return !!this.user;
-  }
-
   toggleProfileMenu(event: MouseEvent) {
     event.stopPropagation();
     this.profileMenu = !this.profileMenu;
@@ -64,6 +55,18 @@ export class NavbarComponent implements OnInit {
     this.user = null;
     this.profileMenu = false;
     this.router.navigate(['/login']);
+  }
+
+  ngOnInit() {
+    const user = JSON.parse(localStorage.getItem('user') || '{}');
+
+    this.isAdmin = user?.role === 'admin';
+    this.isLoggedIn = !!user?.id;
+
+    this.authService.user$.subscribe(user => {
+      this.user = user;
+    });
+
   }
 }
 

@@ -15,6 +15,10 @@ export class AuthService {
 
   user$ = this.userSubject.asObservable();
 
+  getCurrentUser() {
+    return JSON.parse(localStorage.getItem('user') || 'null');
+  }
+
   login(data: { username: string; password: string }) {
     return this.http.post<any>(`${this.API_URL}/login`, data).pipe(
       tap(res => this.saveAuth(res.token, res.user)),

@@ -3,6 +3,27 @@
 
     <h5 class="mb-3">Edit Book</h5>
 
+    <div class="mb-3">
+      <label class="form-label">Book cover</label>
+
+      <input
+        type="file"
+        class="form-control"
+        accept="image/*"
+        (change)="onFileSelected($event)"
+      />
+
+      <div *ngIf="imagePreview" class="preview-wrapper mt-3">
+        <div class="preview-container">
+          <img
+            [src]="imagePreview"
+            alt="preview"
+            class="preview-image"
+          />
+        </div>
+      </div>
+    </div>
+
     <input class="form-control mb-2"
            placeholder="Title"
            [(ngModel)]="book.title">
@@ -26,7 +47,7 @@
         Cancel
       </button>
 
-      <button class="btn btn-warning"
+      <button class="btn btn-success"
               (click)="save()">
         Save
       </button>
@@ -34,4 +55,3 @@
 
   </div>
 </div>
-

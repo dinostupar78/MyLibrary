@@ -36,7 +36,7 @@
           <a class="nav-link" [routerLink]="['/books']">Books</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" [routerLink]="['/loans']">Loans</a>
+          <a *ngIf="isAdmin" class="nav-link" [routerLink]="['/loans']">Loans</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" [routerLink]="['/about']">About</a>
@@ -81,7 +81,7 @@
               </div>
 
               <div class="option">
-                <a class="nav-link" (click)="closeMenus()" routerLink="/admin">
+                <a *ngIf="isAdmin" class="nav-link" (click)="closeMenus()" routerLink="/admin">
                   <i class="fa-solid fa-user-shield"></i>
                   <span>Admin Panel</span>
                 </a>

@@ -27,6 +27,8 @@ import {EditBook} from '../../shared/components/modals/edit-book/edit-book';
 export class Books implements OnInit {
   API_URL = 'http://localhost:3000';
 
+  isLoggedIn = false;
+
   books: any[] = [];
   genres: any[] = [];
   selectedGenreId: string = '';
@@ -49,7 +51,9 @@ export class Books implements OnInit {
 
   ngOnInit(): void {
     const user = JSON.parse(localStorage.getItem('user') || '{}');
+
     this.isAdmin = user?.role === 'admin';
+    this.isLoggedIn = !!user?.id;
 
     this.loadGenres();
     this.loadBooks();
@@ -147,6 +151,7 @@ export class Books implements OnInit {
 
     this.selectedBook = book;
     this.showBorrowModal = true;
+
   }
 
   closeBorrowModal() {
