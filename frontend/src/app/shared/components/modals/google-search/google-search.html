@@ -1,0 +1,41 @@
+<div class="container mt-4">
+  <h2>Google Books Import</h2>
+
+  <div class="d-flex gap-2 mb-3">
+    <input
+      type="text"
+      [(ngModel)]="query"
+      class="form-control"
+      placeholder="Search books..."
+    />
+    <button class="btn btn-primary" (click)="search()">
+      Search
+    </button>
+  </div>
+
+  <div *ngIf="loading">Loading...</div>
+
+  <div *ngFor="let book of results" class="card mb-3 p-3">
+    <div class="row">
+      <div class="col-md-2">
+        <img [src]="book.image_url" width="100" />
+      </div>
+
+      <div class="col-md-8">
+        <h5>{{ book.title }}</h5>
+        <p>{{ book.authors?.join(', ') }}</p>
+        <small>{{ book.categories?.[0] }}</small>
+      </div>
+
+      <div class="col-md-2 text-end">
+        <button class="btn btn-success" (click)="import(book)">
+          Import
+        </button>
+
+        <button class="btn btn-secondary mb-3" (click)="close.emit()">
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -41,6 +41,9 @@ async function startServer(){
         const loansRoutes = require('./routes/loans.routes');
         app.use("/api/loans", loansRoutes);
 
+        const googleRoutes = require('./routes/google.routes');
+        app.use("/api/google", googleRoutes);
+
         app.use("/uploads", express.static("uploads"));
 
         app.use(express.static(

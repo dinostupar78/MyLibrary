@@ -11,6 +11,7 @@ import {Loans} from './pages/loans/loans';
 import {GuestGuard} from './core/guards/guest.guard';
 import {AuthGuard} from './core/guards/auth.guard';
 import {AdminGuard} from './core/guards/admin.guard';
+import {GoogleSearch} from './shared/components/modals/google-search/google-search';
 
 export const routes: Routes = [
   { path: '', component: Home },
@@ -25,6 +26,7 @@ export const routes: Routes = [
 
   { path: 'books', component: Books },
   { path: 'books/:id', component: BookDetails },
+  { path: 'google-import', component: GoogleSearch, canActivate: [AdminGuard] },
 
   { path: '**', redirectTo: '' }
 ];

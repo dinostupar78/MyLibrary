@@ -12,6 +12,11 @@
           (click)="openAddBook()">
           + Add Book
         </button>
+        <button
+          class="btn btn-success btn-sm"
+          (click)="openAddBookFromGoogle()">
+          + Add Book From Google
+        </button>
 
         <button
           class="btn btn-outline-success btn-sm"
@@ -137,6 +142,12 @@
   (created)="onBookCreated()"
   (close)="closeAddBook()">
 </app-add-book>
+
+<app-google-search
+  *ngIf="showGoogleModal"
+  (imported)="onGoogleImport()"
+  (close)="closeGoogleModal()">
+</app-google-search>
 
 <app-edit-book
   *ngIf="showEditBookModal"

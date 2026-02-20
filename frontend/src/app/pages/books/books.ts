@@ -9,6 +9,7 @@ import {AddGenre} from '../../shared/components/modals/add-genre/add-genre';
 import {LoansService} from '../../core/services/loans.service';
 import {AddLoan} from '../../shared/components/modals/add-loan/add-loan';
 import {EditBook} from '../../shared/components/modals/edit-book/edit-book';
+import {GoogleSearch} from '../../shared/components/modals/google-search/google-search';
 
 @Component({
   selector: 'app-books',
@@ -19,7 +20,8 @@ import {EditBook} from '../../shared/components/modals/edit-book/edit-book';
     AddBook,
     AddGenre,
     AddLoan,
-    EditBook
+    EditBook,
+    GoogleSearch
   ],
   templateUrl: './books.html',
   styleUrl: './books.css',
@@ -175,6 +177,21 @@ export class Books implements OnInit {
   onBookUpdated() {
     this.loadBooks();
     this.closeEditBook();
+  }
+
+  showGoogleModal = false;
+
+  openAddBookFromGoogle() {
+    this.showGoogleModal = true;
+  }
+
+  closeGoogleModal() {
+    this.showGoogleModal = false;
+  }
+
+  onGoogleImport() {
+    this.loadBooks();
+    this.closeGoogleModal();
   }
 
 }
