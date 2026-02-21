@@ -16,7 +16,8 @@ async function searchGoogleBooks(req, res) {
                 params: {
                     q,
                     printType: "books",
-                    maxResults: 20
+                    maxResults: 20,
+                    key: process.env.GOOGLE_API_KEY
                 }
             }
         );

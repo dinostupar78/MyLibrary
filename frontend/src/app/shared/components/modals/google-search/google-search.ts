@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {GoogleService} from '../../../../core/services/google.service';
 import {FormsModule} from '@angular/forms';
 import {CommonModule} from '@angular/common';
@@ -14,11 +14,11 @@ import { Output, EventEmitter } from '@angular/core';
   styleUrl: './google-search.css',
 })
 export class GoogleSearch {
+  @Input() results: any[] = [];
   @Output() imported = new EventEmitter<void>();
   @Output() close = new EventEmitter<void>();
 
   query = '';
-  results: any[] = [];
   loading = false;
 
   constructor(private googleService: GoogleService) {}

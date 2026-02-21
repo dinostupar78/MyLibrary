@@ -1,6 +1,6 @@
 const crypto = require("crypto");
 const jwt = require("jsonwebtoken");
-const config = require("../config");
+const config = require("../db");
 const usersService = require("./users.service");
 
 async function register({username, name, email, password, avatarUrl}) {
