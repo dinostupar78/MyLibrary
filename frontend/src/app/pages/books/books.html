@@ -12,11 +12,11 @@
           (click)="openAddBook()">
           + Add Book
         </button>
-        <button
+        <a
           class="btn btn-outline-success btn-sm"
-          (click)="openAddBookFromGoogle()">
+          [routerLink]="['/google/search']">
           + Add Book From Google
-        </button>
+        </a>
 
         <button
           class="btn btn-success btn-sm"
@@ -69,7 +69,9 @@
 
           <div class="col-4">
             <img
-              [src]="b.image_url ? (API_URL + b.image_url) : 'public/bookPlaceholder.png'"
+              [src]="b.image_url ? (b.image_url.startsWith('http')
+              ? b.image_url : API_URL + b.image_url)
+              : 'public/bookPlaceholder.png'"
               class="book-cover-small"
               alt="Book cover"
             />
@@ -142,12 +144,6 @@
   (created)="onBookCreated()"
   (close)="closeAddBook()">
 </app-add-book>
-
-<app-google-search
-  *ngIf="showGoogleModal"
-  (imported)="onGoogleImport()"
-  (close)="closeGoogleModal()">
-</app-google-search>
 
 <app-edit-book
   *ngIf="showEditBookModal"

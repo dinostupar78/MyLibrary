@@ -26,7 +26,7 @@ export const routes: Routes = [
 
   { path: 'books', component: Books },
   { path: 'books/:id', component: BookDetails },
-  { path: 'google-import', component: GoogleSearch, canActivate: [AdminGuard] },
+  { path: 'google/search', component: GoogleSearch, canActivate: [AdminGuard] },
 
   { path: '**', redirectTo: '' }
 ];

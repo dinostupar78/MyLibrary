@@ -1,13 +1,16 @@
 const axios = require("axios");
 const googleService = require('../services/google.service');
-
+const config = require("../config");
 
 async function searchGoogleBooks(req, res) {
     try {
-        const { q } = req.query;
+        console.log("GOOGLE KEY:", config.googleApiKey);
 
-        if (!q) {
-            return res.status(400).json({ message: "Missing query" });
+        const { q } = req.query;
+        if (!q) return res.status(400).json({ message: "Missing query" });
+
+        if (!config.googleApiKey) {
+            return res.status(500).json({ message: "GOOGLE_API_KEY is missing on server" });
         }
 
         const response = await axios.get(
@@ -17,61 +20,52 @@ async function searchGoogleBooks(req, res) {
                     q,
                     printType: "books",
                     maxResults: 20,
-                    key: process.env.GOOGLE_API_KEY
-                }
+                    key: config.googleApiKey,
+                },
             }
         );
 
-        const books = (response.data.items || []).map(item => {
-            const info = item.volumeInfo;
-
+        const books = (response.data.items || []).map((item) => {
+            const info = item.volumeInfo || {};
             return {
                 title: info.title,
                 authors: info.authors || [],
-                description: info.description,
+                description: info.description || "",
                 categories: info.categories || [],
-                image_url: info.imageLinks?.thumbnail
+                image_url: info.imageLinks?.thumbnail || null,
             };
         });
 
-        res.json(books);
-
+        return res.json(books);
     } catch (err) {
-        console.error("GoogleService search error:", err.message);
-        res.status(500).json({ message: "GoogleService API error" });
+        console.error("Google search error:", err);
+        return res.status(500).json({ message: "GoogleService API error" });
     }
 }
 
 async function importBookFromGoogle(req, res) {
     try {
         const { title, authors, description, categories, image_url } = req.body;
+        if (!title) return res.status(400).json({ message: "Missing title" });
 
-        if (!title) {
-            return res.status(400).json({ message: "Missing title" });
-        }
-
-        const genreName = categories?.[0] || "Other";
+        const genreName = (categories?.[0] || "Other").trim();
 
         let genre = await googleService.findGenreByName(genreName);
-
-        if (!genre) {
-            genre = await googleService.createGenre(genreName);
-        }
+        if (!genre) genre = await googleService.createGenre(genreName);
 
         const book = await googleService.createBook({
             title,
             author: authors?.join(", ") || "Unknown",
-            description,
+            description: description || "",
             image_url,
             genreId: genre.id,
-            total_copies: 1
+            total_copies: 1,
         });
 
-        res.status(201).json(book);
-
+        return res.status(201).json(book);
     } catch (err) {
         console.error("Import error:", err);
-        res.status(500).json({ message: "Import failed" });
+        return res.status(500).json({ message: "Import failed" });
     }
 }
 

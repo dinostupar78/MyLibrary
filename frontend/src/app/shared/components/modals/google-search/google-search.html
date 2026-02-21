@@ -1,41 +1,61 @@
-<div class="container mt-4">
-  <h2>Google Books Import</h2>
+<div class="google-page">
 
-  <div class="d-flex gap-2 mb-3">
-    <input
-      type="text"
-      [(ngModel)]="query"
-      class="form-control"
-      placeholder="Search books..."
-    />
-    <button class="btn btn-primary" (click)="search()">
-      Search
-    </button>
-  </div>
+  <div class="google-container">
 
-  <div *ngIf="loading">Loading...</div>
+    <h2 class="google-title">Google Books Import</h2>
 
-  <div *ngFor="let book of results" class="card mb-3 p-3">
-    <div class="row">
-      <div class="col-md-2">
-        <img [src]="book.image_url" width="100"  alt=""/>
-      </div>
-
-      <div class="col-md-8">
-        <h5>{{ book.title }}</h5>
-        <p>{{ book.authors?.join(', ') }}</p>
-        <small>{{ book.categories?.[0] }}</small>
-      </div>
-
-      <div class="col-md-2 text-end">
-        <button class="btn btn-success" (click)="import(book)">
-          Import
-        </button>
-
-        <button class="btn btn-secondary mb-3" (click)="close.emit()">
-          Close
-        </button>
-      </div>
+    <div class="google-search-bar">
+      <input
+        type="text"
+        [(ngModel)]="query"
+        class="form-control"
+        placeholder="Search books..."
+      />
+      <button class="btn btn-primary search-btn" (click)="search()">
+        Search
+      </button>
     </div>
+
+    <div *ngIf="loading" class="loading-wrapper">
+      <div class="spinner-border text-primary"></div>
+    </div>
+
+    <div *ngFor="let book of results" class="google-card">
+
+      <div class="google-card-content">
+
+        <div class="google-image-wrapper">
+          <img
+            [src]="book.image_url"
+            class="google-image"
+            alt=""
+          />
+        </div>
+
+        <div class="google-info">
+          <h5 class="google-book-title">{{ book.title }}</h5>
+          <p class="google-author">
+            {{ book.authors?.join(', ') }}
+          </p>
+          <small class="google-category">
+            {{ book.categories?.[0] }}
+          </small>
+        </div>
+
+        <div class="google-actions">
+          <button class="btn btn-success action-btn" (click)="import(book)">
+            Import
+          </button>
+
+          <button class="btn btn-outline-secondary action-btn" (click)="close.emit()">
+            Close
+          </button>
+        </div>
+
+      </div>
+
+    </div>
+
   </div>
+
 </div>

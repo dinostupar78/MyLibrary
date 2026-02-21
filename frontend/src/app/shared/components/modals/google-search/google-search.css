@@ -1,0 +1,88 @@
+.google-page {
+  padding-top: 120px;
+  padding-bottom: 60px;
+}
+
+.google-container {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.google-title {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.google-search-bar {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 30px;
+}
+
+.search-btn {
+  min-width: 120px;
+}
+
+.loading-wrapper {
+  text-align: center;
+  padding: 20px 0;
+}
+
+.google-card {
+  background: #ffffff;
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 25px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  transition: 0.2s ease;
+}
+
+.google-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+}
+
+.google-card-content {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.google-image-wrapper {
+  width: 120px;
+  text-align: center;
+}
+
+.google-image {
+  max-height: 150px;
+  max-width: 100%;
+  border-radius: 6px;
+}
+
+.google-info {
+  flex: 1;
+}
+
+.google-book-title {
+  margin-bottom: 5px;
+}
+
+.google-author {
+  margin-bottom: 5px;
+  color: #666;
+}
+
+.google-category {
+  color: #888;
+}
+
+.google-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 120px;
+}
+
+.action-btn {
+  width: 100%;
+}
