@@ -13,7 +13,6 @@
   will-change: transform;
 }
 
-
 .hero-overlay {
   position: absolute;
   inset: 0;
@@ -21,7 +20,6 @@
   z-index: 1;
   pointer-events: none;
 }
-
 
 .carousel-caption {
   bottom: 28%;

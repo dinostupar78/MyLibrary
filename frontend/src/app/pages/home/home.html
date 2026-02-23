@@ -162,13 +162,12 @@
           <div class="row g-0 align-items-center">
 
            <div class="col-4">
-              <img
-                [src]="b.image_url
-                  ? ('http://localhost:3000' + b.image_url)
-                  : 'public/bookPlaceholder.png'"
-                class="book-cover-small"
-                alt="Book cover"
-              />
+             <img
+               [src]="b.image_url ? (b.image_url.startsWith('http') ? b.image_url.replace('http://','https://')
+               : 'http://localhost:3000' + b.image_url) : 'assets/bookPlaceholder.png'"
+               class="book-cover-small"
+               alt="Book cover"
+             />
             </div>
 
             <div class="col-8">

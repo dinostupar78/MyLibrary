@@ -2,6 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {LoansService} from '../../core/services/loans.service';
 import {BookStatusPipe} from '../../shared/pipes/book-status-pipe';
+import {MatDialog} from '@angular/material/dialog';
+import {DialogComponent} from '../../shared/dialog/dialog.component';
 
 @Component({
   selector: 'app-loans',
@@ -16,7 +18,8 @@ export class Loans implements OnInit {
   loans: any[] = [];
   today = new Date();
 
-  constructor(private loansService: LoansService) {}
+  constructor(private loansService: LoansService,
+              private dialog: MatDialog) {}
 
   ngOnInit(): void {
     this.loadLoans();
@@ -38,13 +41,43 @@ export class Loans implements OnInit {
   }
 
   returnBook(id: string) {
-    if (!confirm('Return this book?')) return;
 
-    this.loansService.returnLoan(id).subscribe({
-      next: () => {
-        this.loadLoans();
-      },
-      error: err => alert(err.error?.message || 'Return failed')
+    const confirmRef = this.dialog.open(DialogComponent, {
+      data: {
+        title: 'Confirm Return',
+        message: 'Are you sure you want to return this book?',
+        type: 'confirm'
+      }
+    });
+
+    confirmRef.afterClosed().subscribe(result => {
+
+      if (!result) return;
+
+      this.loansService.returnLoan(id).subscribe({
+        next: () => {
+
+          this.dialog.open(DialogComponent, {
+            data: {
+              title: 'Return Successful',
+              message: 'Book has been successfully returned.',
+              type: 'success'
+            }
+          });
+
+          this.loadLoans();
+        },
+        error: err => {
+          this.dialog.open(DialogComponent, {
+            data: {
+              title: 'Return Failed',
+              message: err.error?.message || 'Return failed.',
+              type: 'error'
+            }
+          });
+        }
+      });
+
     });
   }
 
