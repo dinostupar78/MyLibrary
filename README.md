@@ -2,11 +2,15 @@
 
  [![Angular](https://img.shields.io/badge/Angular-%23DD0031.svg?logo=angular&logoColor=white)](#) [![Node.js](https://img.shields.io/badge/Node.js-6DA55F?logo=node.js&logoColor=white)](#) [![Express.js](https://img.shields.io/badge/Express.js-%23404d59.svg?logo=express&logoColor=%2361DAFB)](#) ![License](https://img.shields.io/badge/License-MIT-yellow)
 
-A Full-Stack Library Managment System for managing books in simple and efficient way.<br>
-Built with Angular (SPA) + Node.js/Express (RESTful API) + PostgreSQL (Database) following clean architecture principles and RESTful API standards.
+A Full-stack Library Management System demonstrating modern web development practices, including RESTful API design, JWT-based authentication, relational database modeling, and role-based authorization.<br>
+
+Developed with Angular, Node.js/Express, and PostgreSQL to showcase clean architecture, modular structure, and scalable backend design.
  <hr>
 
+ # Demo
+ Live demo coming soon  
 
+ <hr>
 
 # ✨ Features
 👤 Users
@@ -66,10 +70,9 @@ The Database is designed following normalization principles and relational model
 # 🚀 Installation & Running
 
 Before running the project, make sure you have the following installed:
-- Node.js (v18+ recommended)
-- PostgreSQL
-- pgAdmin (optional, for database management)
-- Angular CLI
+- [Node.js](https://nodejs.org/en/download)  (v18+ recommended)
+- [PostgreSQL](https://www.postgresql.org/download/) 
+- [Angular CLI](https://angular.dev/tools/cli) 
 
 1. **Clone the Repository**
    
