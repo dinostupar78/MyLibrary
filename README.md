@@ -11,12 +11,12 @@ A Full-stack Library Management System built using Angular and Node.js/Express.<
 Demonstrates modern web development practices, including RESTful API design, JWT-based authentication, relational database modeling, and role-based authorization.
  <hr>
 
- # ▶️ Demo
+ ## ▶️ Demo
  Live demo coming soon  
 
  <hr>
 
-# ✨ Features
+## ✨ Features
 👤 Users
 - Login/Registration
 - JWT-based authentiction
@@ -44,7 +44,7 @@ Demonstrates modern web development practices, including RESTful API design, JWT
 - Automatic availability update on borrow/return
 <hr>
 
-# 🌐 API Design
+## 🌐 API Design
 The backend follows RESTful conventions:
 | Method | Endpoint           | Description   |
 | ------ | ------------------ | ------------- |
@@ -56,7 +56,7 @@ The backend follows RESTful conventions:
 | POST   | /api/auth/register | Register      |
 | POST   | /api/loans         | Borrow book   |
 
-# 🗄 Database 
+## 🗄 Database 
 The application uses PostgreSQL as a Relational Database Management System. <br>
 The Database is designed following normalization principles and relational modeling best practices.
 
@@ -71,7 +71,7 @@ The Database is designed following normalization principles and relational model
 - Books  <->  Loans        (1:N)
 - Genres <->  Books       (1:N)
 
-# 🚀 Installation & Running
+## 🚀 Installation & Running
 
 Before running the project, make sure you have the following installed:
 - [Node.js](https://nodejs.org/en/download)  (v18+ recommended)
