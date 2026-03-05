@@ -1,4 +1,4 @@
-# 📖 MyLibrary
+# 📚 MyLibrary
 
 ![Angular](https://img.shields.io/badge/Angular-17%2B-DD0031?logo=angular&logoColor=white&labelColor=444)
 ![Node.js](https://img.shields.io/badge/Node.js-20%2B-339933?logo=node.js&logoColor=white&labelColor=444)
@@ -6,12 +6,12 @@
 ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-15%2B-336791?logo=postgresql&logoColor=white&labelColor=444)
 ![License](https://img.shields.io/badge/License-MIT-yellow?labelColor=444)
 
-A Full-stack Library Management System demonstrating modern web development practices, including RESTful API design, JWT-based authentication, relational database modeling, and role-based authorization.<br>
+A Full-stack Library Management System built using Angular and Node.js/Express.js.<br>
 
-Developed with Angular, Node.js/Express, and PostgreSQL to showcase clean architecture, modular structure, and scalable backend design.
+Demonstrates modern web development practices, including RESTful API design, JWT-based authentication, relational database modeling, and role-based authorization.
  <hr>
 
- # Demo
+ # ▶️ Demo
  Live demo coming soon  
 
  <hr>
