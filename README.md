@@ -1,6 +1,10 @@
 # 📖 MyLibrary
 
- [![Angular](https://img.shields.io/badge/Angular-%23DD0031.svg?logo=angular&logoColor=white)](#) [![Node.js](https://img.shields.io/badge/Node.js-6DA55F?logo=node.js&logoColor=white)](#) [![Express.js](https://img.shields.io/badge/Express.js-%23404d59.svg?logo=express&logoColor=%2361DAFB)](#) ![License](https://img.shields.io/badge/License-MIT-yellow)
+![Angular](https://img.shields.io/badge/Angular-17%2B-DD0031?logo=angular&logoColor=white&labelColor=444)
+![Node.js](https://img.shields.io/badge/Node.js-20%2B-339933?logo=node.js&logoColor=white&labelColor=444)
+![Express](https://img.shields.io/badge/Express-4%2B-000000?logo=express&logoColor=white&labelColor=444)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-15%2B-336791?logo=postgresql&logoColor=white&labelColor=444)
+![License](https://img.shields.io/badge/License-MIT-yellow?labelColor=444)
 
 A Full-stack Library Management System demonstrating modern web development practices, including RESTful API design, JWT-based authentication, relational database modeling, and role-based authorization.<br>
 
