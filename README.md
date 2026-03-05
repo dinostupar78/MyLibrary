@@ -6,7 +6,7 @@
 ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-15%2B-336791?logo=postgresql&logoColor=white&labelColor=444)
 ![License](https://img.shields.io/badge/License-MIT-yellow?labelColor=444)
 
-A Full-stack Library Management System built using Angular and Node.js/Express.js.<br>
+A Full-stack Library Management System built using Angular and Node.js/Express.<br>
 
 Demonstrates modern web development practices, including RESTful API design, JWT-based authentication, relational database modeling, and role-based authorization.
  <hr>
