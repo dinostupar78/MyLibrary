@@ -8,7 +8,7 @@
 
 A Full-stack Library Management System built using Angular and Node.js/Express.<br>
 
-Demonstrates modern web development practices, including RESTful API design, JWT-based authentication, relational database modeling, and role-based authorization.
+Implements modern web development practices, including RESTful API design, JWT-based authentication, relational database modeling, and role-based authorization.
  <hr>
 
  ## ▶️ Demo
