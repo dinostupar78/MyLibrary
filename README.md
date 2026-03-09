@@ -9,17 +9,17 @@
 A Full-stack Library Management System built using Angular and Node.js/Express.<br>
 
 Implements modern web development practices, including RESTful API design, JWT-based authentication, relational database modeling, and role-based authorization.
- <hr>
-
+ 
+ ---
  ## ▶️ Demo
  Live demo coming soon  
 
- <hr>
+ ---
 
 ## ✨ Features
 👤 Users
 - Login/Registration
-- JWT-based authentiction
+- JWT-based authentication
 - Role-based authorization (User/Admin)
 - Profile editing
 - Avatar upload (Multer)
@@ -40,9 +40,19 @@ Implements modern web development practices, including RESTful API design, JWT-b
 - Borrow books
 - Prevent duplicate active loans
 - Return books
-- Loan histoyr overview (Admin only)
+- Loan history overview (Admin only)
 - Automatic availability update on borrow/return
-<hr>
+---
+
+## 🛠 Tech Stack
+- **Angular 17+** 
+- **Node.js / Express** (RESTful API)
+- **Google Books API**
+- **PostgreSQL**
+- **JWT** (Authentication & Authorization)
+- **Multer** (file uploads)
+- **Postman** (API testing)
+---
 
 ## 🌐 API Design
 The backend follows RESTful conventions:
@@ -55,6 +65,8 @@ The backend follows RESTful conventions:
 | POST   | /api/auth/login    | Login         |
 | POST   | /api/auth/register | Register      |
 | POST   | /api/loans         | Borrow book   |
+| GET    | /api/google/search | Search books via Google Books API   |
+| POST   | /api/google/import | Import books from Google Books API  |
 
 ## 🗄 Database 
 The application uses PostgreSQL as a Relational Database Management System. <br>
@@ -85,15 +97,14 @@ Before running the project, make sure you have the following installed:
    cd mylibrary
   
 2. **Database Setup**
-   - Open **pgAdmin4**
-   - Create a new database named
-     
-     ```bash 
-     library
-     ```
-   -  Execute the provided SQL script (library.sql) to generate tables.
+
+    Open **pgAdmin4**
    
-3. **Backend Setup**
+    Create a new database named `library`
+     
+    Execute the provided SQL script (library.sql) to generate tables.
+   
+4. **Backend Setup**
    
    Navigate to backend folder:
 
@@ -128,13 +139,18 @@ Before running the project, make sure you have the following installed:
    Running on port 3000
    ```
 
-4. **Frontend Setup**
+5. **Frontend Setup**
    
    Navigate to frontend folder:
 
    ```bash 
    cd frontend
    npm install
+   ```
+
+   Start frontend server:
+
+   ```bash 
    ng serve
    ```
 
@@ -143,40 +159,3 @@ Before running the project, make sure you have the following installed:
    ```bash 
    http://localhost:4200
    ```
-
-   
-   
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
