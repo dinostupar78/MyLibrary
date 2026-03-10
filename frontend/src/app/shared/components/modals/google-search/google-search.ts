@@ -3,7 +3,7 @@ import {GoogleService} from '../../../../core/services/google.service';
 import {FormsModule} from '@angular/forms';
 import {CommonModule} from '@angular/common';
 import { Output, EventEmitter } from '@angular/core';
-import {DialogComponent} from '../../../dialog/dialog.component';
+import {DialogComponent} from '../../../dialogs/dialog.component';
 import {MatDialog} from '@angular/material/dialog';
 
 @Component({

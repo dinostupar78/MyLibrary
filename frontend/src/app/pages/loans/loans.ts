@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import {LoansService} from '../../core/services/loans.service';
 import {BookStatusPipe} from '../../shared/pipes/book-status-pipe';
 import {MatDialog} from '@angular/material/dialog';
-import {DialogComponent} from '../../shared/dialog/dialog.component';
+import {DialogComponent} from '../../shared/dialogs/dialog.component';
 
 @Component({
   selector: 'app-loans',

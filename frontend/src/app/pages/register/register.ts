@@ -9,7 +9,7 @@ import {
   ValidationErrors,
   Validators
 } from '@angular/forms';
-import { DialogService } from '../../shared/dialog/dialog.service';
+import { DialogService } from '../../shared/dialogs/dialog.service';
 import { MatMiniFabButton } from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';
 import { AuthService } from '../../core/services/auth.service';

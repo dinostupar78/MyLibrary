@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Router, RouterLink} from '@angular/router';
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
-import {DialogService} from '../../shared/dialog/dialog.service';
+import {DialogService} from '../../shared/dialogs/dialog.service';
 import {AuthService} from '../../core/services/auth.service';
 
 @Component({

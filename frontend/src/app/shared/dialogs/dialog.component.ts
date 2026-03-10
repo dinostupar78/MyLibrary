@@ -6,7 +6,7 @@ import {
 import {CommonModule} from '@angular/common';
 
 @Component({
-  selector: 'app-dialog',
+  selector: 'app-dialogs',
   imports: [
     CommonModule,],
   templateUrl: './dialog.component.html',
