@@ -29,8 +29,6 @@ async function register({username, name, email, password, avatarUrl}) {
         user_image_url: avatarUrl,
     });
 
-
-
     const token = jwt.sign({
             sub: user.id,
             email: user.email,
