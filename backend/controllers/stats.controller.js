@@ -1,4 +1,4 @@
-const statsService = require("../services/stats.service");
+const statsService = require("../repositories/stats.repository");
 
 async function getStats(req, res) {
     try {

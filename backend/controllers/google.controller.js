@@ -1,5 +1,5 @@
 const axios = require("axios");
-const googleService = require('../services/google.service');
+const googleService = require('../repositories/google.repository');
 const config = require("../config");
 
 async function searchGoogleBooks(req, res) {

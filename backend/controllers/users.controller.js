@@ -1,4 +1,4 @@
-const usersService = require("../services/users.service");
+const usersService = require("../repositories/users.repository");
 
 async function getMyProfile(req, res) {
     try{

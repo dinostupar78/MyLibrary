@@ -1,4 +1,4 @@
-const genresService = require('../services/genres.service');
+const genresService = require('../repositories/genres.repository');
 
 async function getAllGenres(req, res) {
     try{

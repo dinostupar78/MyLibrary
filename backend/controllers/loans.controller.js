@@ -1,5 +1,5 @@
-const loansService = require("../services/loans.service");
-const booksService = require("../services/books.service");
+const loansService = require("../repositories/loans.repository");
+const booksService = require("../repositories/books.repository");
 
 async function getAllLoans(req, res) {
     try {

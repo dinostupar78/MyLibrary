@@ -1,4 +1,4 @@
-const usersService = require('../services/users.service');
+const usersService = require('../repositories/users.repository');
 
 async function getAllUsers(req, res) {
     const users = await usersService.findAll();

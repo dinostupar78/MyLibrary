@@ -1,7 +1,7 @@
 const crypto = require("crypto");
 const jwt = require("jsonwebtoken");
 const config = require("../config");
-const usersService = require("./users.service");
+const usersService = require("../repositories/users.repository");
 
 async function register({username, name, email, password, avatarUrl}) {
     if (!username || !name || !email || !password ) {
