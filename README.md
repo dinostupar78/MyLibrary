@@ -1,21 +1,25 @@
 # 📚 MyLibrary
 
- [![Angular](https://img.shields.io/badge/Angular-%23DD0031.svg?logo=angular&logoColor=white)](#) [![Node.js](https://img.shields.io/badge/Node.js-6DA55F?logo=node.js&logoColor=white)](#) [![Express.js](https://img.shields.io/badge/Express.js-%23404d59.svg?logo=express&logoColor=%2361DAFB)](#) ![License](https://img.shields.io/badge/License-MIT-yellow)
+![Angular](https://img.shields.io/badge/Angular-17%2B-DD0031?logo=angular&logoColor=white&labelColor=444)
+![Node.js](https://img.shields.io/badge/Node.js-20%2B-339933?logo=node.js&logoColor=white&labelColor=444)
+![Express](https://img.shields.io/badge/Express-4%2B-000000?logo=express&logoColor=white&labelColor=444)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-15%2B-336791?logo=postgresql&logoColor=white&labelColor=444)
+![License](https://img.shields.io/badge/License-MIT-yellow?labelColor=444)
 
-A Full-stack Library Management System demonstrating modern web development practices, including RESTful API design, JWT-based authentication, relational database modeling, and role-based authorization.<br>
+A Full-stack Library Management System built using Angular and Node.js/Express.<br>
 
-Developed with Angular, Node.js/Express, and PostgreSQL to showcase clean architecture, modular structure, and scalable backend design.
- <hr>
-
- # Demo
+Implements modern web development practices, including RESTful API design, JWT-based authentication, relational database modeling, and role-based authorization.
+ 
+ ---
+ ## ▶️ Demo
  Live demo coming soon  
 
- <hr>
+ ---
 
-# ✨ Features
+## ✨ Features
 👤 Users
 - Login/Registration
-- JWT-based authentiction
+- JWT-based authentication
 - Role-based authorization (User/Admin)
 - Profile editing
 - Avatar upload (Multer)
@@ -36,11 +40,21 @@ Developed with Angular, Node.js/Express, and PostgreSQL to showcase clean archit
 - Borrow books
 - Prevent duplicate active loans
 - Return books
-- Loan histoyr overview (Admin only)
+- Loan history overview (Admin only)
 - Automatic availability update on borrow/return
-<hr>
+---
 
-# 🌐 API Design
+## 🛠 Tech Stack
+- **Angular 17+** 
+- **Node.js / Express** (RESTful API)
+- **Google Books API**
+- **PostgreSQL** (Database)
+- **JWT** (Authentication & Authorization)
+- **Multer** (file uploads)
+- **Postman** (API testing)
+---
+
+## 🌐 API Design
 The backend follows RESTful conventions:
 | Method | Endpoint           | Description   |
 | ------ | ------------------ | ------------- |
@@ -51,8 +65,10 @@ The backend follows RESTful conventions:
 | POST   | /api/auth/login    | Login         |
 | POST   | /api/auth/register | Register      |
 | POST   | /api/loans         | Borrow book   |
+| GET    | /api/google/search | Search books via Google Books API   |
+| POST   | /api/google/import | Import books from Google Books API  |
 
-# 🗄 Database 
+## 🗄 Database 
 The application uses PostgreSQL as a Relational Database Management System. <br>
 The Database is designed following normalization principles and relational modeling best practices.
 
@@ -67,7 +83,7 @@ The Database is designed following normalization principles and relational model
 - Books  <->  Loans        (1:N)
 - Genres <->  Books       (1:N)
 
-# 🚀 Installation & Running
+## 🚀 Installation & Running
 
 Before running the project, make sure you have the following installed:
 - [Node.js](https://nodejs.org/en/download)  (v18+ recommended)
@@ -81,15 +97,14 @@ Before running the project, make sure you have the following installed:
    cd mylibrary
   
 2. **Database Setup**
-   - Open **pgAdmin4**
-   - Create a new database named
-     
-     ```bash 
-     library
-     ```
-   -  Execute the provided SQL script (library.sql) to generate tables.
+
+    Open **pgAdmin4**
    
-3. **Backend Setup**
+    Create a new database named `library`
+     
+    Execute the provided SQL script (library.sql) to generate tables.
+   
+4. **Backend Setup**
    
    Navigate to backend folder:
 
@@ -124,13 +139,18 @@ Before running the project, make sure you have the following installed:
    Running on port 3000
    ```
 
-4. **Frontend Setup**
+5. **Frontend Setup**
    
    Navigate to frontend folder:
 
    ```bash 
    cd frontend
    npm install
+   ```
+
+   Start frontend server:
+
+   ```bash 
    ng serve
    ```
 
@@ -139,40 +159,3 @@ Before running the project, make sure you have the following installed:
    ```bash 
    http://localhost:4200
    ```
-
-   
-   
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
