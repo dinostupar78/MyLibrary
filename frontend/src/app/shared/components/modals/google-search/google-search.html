@@ -20,7 +20,7 @@
       <div class="spinner-border text-primary"></div>
     </div>
 
-    <div *ngFor="let book of results" class="google-card">
+    <div *ngFor="let book of results; let i = index" class="google-card">
 
       <div class="google-card-content">
 
@@ -43,11 +43,15 @@
         </div>
 
         <div class="google-actions">
-          <button class="btn btn-success action-btn" (click)="import(book)">
+          <button
+            class="btn btn-success action-btn"
+            (click)="import(book, i)">
             Import
           </button>
 
-          <button class="btn btn-outline-secondary action-btn" (click)="close.emit()">
+          <button
+            class="btn btn-outline-secondary action-btn"
+            (click)="removeBook(i)">
             Close
           </button>
         </div>

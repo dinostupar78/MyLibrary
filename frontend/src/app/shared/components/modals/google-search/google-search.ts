@@ -2,7 +2,6 @@ import {Component, Input} from '@angular/core';
 import {GoogleService} from '../../../../core/services/google.service';
 import {FormsModule} from '@angular/forms';
 import {CommonModule} from '@angular/common';
-import { Output, EventEmitter } from '@angular/core';
 import {DialogComponent} from '../../../dialogs/dialog.component';
 import {MatDialog} from '@angular/material/dialog';
 
@@ -17,14 +16,9 @@ import {MatDialog} from '@angular/material/dialog';
 })
 export class GoogleSearch {
   @Input() results: any[] = [];
-  @Output() imported = new EventEmitter<void>();
-  @Output() close = new EventEmitter<void>();
 
   query = '';
   loading = false;
-  importSuccess = false;
-  importError = false;
-
   constructor(private googleService: GoogleService,
               private dialog: MatDialog,) {}
 
@@ -45,9 +39,12 @@ export class GoogleSearch {
     });
   }
 
-  import(book: any) {
+  import(book: any, index: number) {
     this.googleService.importBook(book).subscribe({
       next: () => {
+
+        this.results.splice(index, 1);
+        this.results = [...this.results];   // ← bitno
 
         this.dialog.open(DialogComponent, {
           data: {
@@ -70,6 +67,11 @@ export class GoogleSearch {
 
       }
     });
+  }
+
+  removeBook(index: number) {
+    this.results.splice(index, 1);
+    this.results = [...this.results];
   }
 
 }

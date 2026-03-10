@@ -177,10 +177,4 @@ export class Books implements OnInit {
     this.closeEditBook();
   }
 
-
-
-
-
-
-
 }

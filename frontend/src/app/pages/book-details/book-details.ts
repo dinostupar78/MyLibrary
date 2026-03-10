@@ -19,6 +19,17 @@ export class BookDetails implements OnInit {
 
   constructor(private route: ActivatedRoute, private booksService: BooksService) {}
 
+  getBookImage() {
+    if (!this.book?.image_url) {
+      return 'public/bookPlaceholder.png';
+    }
+
+    if (this.book.image_url.startsWith('http')) {
+      return this.book.image_url;
+    }
+
+    return this.API_URL + this.book.image_url;
+  }
 
   ngOnInit(): void {
       const id = this.route.snapshot.paramMap.get('id');
