@@ -49,6 +49,7 @@ Implements modern web development practices, including RESTful API design, JWT-b
 - **Node.js / Express** (RESTful API)
 - **Google Books API**
 - **PostgreSQL** (Database)
+- **EmailJS** (Contact form email service)
 - **JWT** (Authentication & Authorization)
 - **Multer** (file uploads)
 - **Postman** (API testing)
