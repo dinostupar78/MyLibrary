@@ -1,7 +1,7 @@
 # 📚 MyLibrary
 
 ![Angular](https://img.shields.io/badge/Angular-17%2B-DD0031?logo=angular&logoColor=white&labelColor=444)
-![Node.js](https://img.shields.io/badge/Node.js-20%2B-339933?logo=node.js&logoColor=white&labelColor=444)
+![Node.js](https://img.shields.io/badge/Node.js-18%2B-339933?logo=node.js&logoColor=white&labelColor=444)
 ![Express](https://img.shields.io/badge/Express-4%2B-000000?logo=express&logoColor=white&labelColor=444)
 ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-15%2B-336791?logo=postgresql&logoColor=white&labelColor=444)
 ![License](https://img.shields.io/badge/License-MIT-yellow?labelColor=444)
@@ -12,7 +12,7 @@ Implements modern web development practices, including RESTful API design, JWT-b
  
  ---
  ## ▶️ Demo
- Live demo coming soon  
+ 👉 [YouTube Link](https://youtu.be/awTsVUdDcUk)
 
  ---
 
@@ -49,8 +49,9 @@ Implements modern web development practices, including RESTful API design, JWT-b
 - **Node.js / Express** (RESTful API)
 - **Google Books API**
 - **PostgreSQL** (Database)
-- **JWT** (Authentication & Authorization)
-- **Multer** (file uploads)
+- **EmailJS** (Contact form email service)
+- **JWT** (Authentication) 
+- **Multer** (File uploads)
 - **Postman** (API testing)
 ---
 
@@ -70,6 +71,7 @@ The backend follows RESTful conventions:
 
 ## 🗄 Database 
 The application uses PostgreSQL as a Relational Database Management System. <br>
+
 The Database is designed following normalization principles and relational modeling best practices.
 
 <b>Entities</b>
@@ -94,7 +96,7 @@ Before running the project, make sure you have the following installed:
    
    ```bash 
    git clone <repository-url>
-   cd mylibrary
+   cd MyLibrary
   
 2. **Database Setup**
 
@@ -154,8 +156,13 @@ Before running the project, make sure you have the following installed:
    ng serve
    ```
 
-   The application will run at:
+6. **Demo Admin Account**
+
+   To access features such as adding books, editing books, adding genres and importing books from Google Books API, you can log in using the following admin account:
 
    ```bash 
-   http://localhost:4200
+   Username: dinostupar68
+   Password: admin
    ```
+
+   After logging in with this account, admin features will be available in the application.
