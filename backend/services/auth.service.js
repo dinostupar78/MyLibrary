@@ -53,7 +53,6 @@ async function register({username, name, email, password, avatarUrl}) {
 
 async function login({username, password}) {
     const user = await usersService.findByUsername(username);
-
     if(!user) {
         throw { status: 401, message: "Invalid credentials!" };
     }
